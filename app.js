@@ -9,7 +9,7 @@ const story = require('./routes/story')
 const error = require('./routes/error')
 
 module.exports = express()
-  .use(logger('common', {stream: fs.createWriteStream('./logs/access.log', {flags: 'a+'})}))
+  .use(logger('common', {stream: fs.createWriteStream('./access.log', {flags: 'a+'})}))
   .use(logger('dev')) // comment out for deployment
   .use(bodyParser.urlencoded({extended: true}))
 
