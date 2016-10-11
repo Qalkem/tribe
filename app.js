@@ -1,25 +1,25 @@
 const fs = require('fs')
 const express = require('express')
-const logger = require('morgan')
-const bodyParser = require('body-parser')
+const morgan = require('morgan')
+const jsonBodyParser = require('body-parser').json()
 
-const index = require('./routes/index')
-const stories = require('./routes/stories')
-const story = require('./routes/story')
-const error = require('./routes/error')
+const indexRoute = require('./routes/index')
+const storiesRoute = require('./routes/stories')
+const storyRoute = require('./routes/story')
+const errorRoute = require('./routes/error')
 
 module.exports = express()
-  .use(logger('common', {stream: fs.createWriteStream('./access.log', {flags: 'a+'})}))
-  .use(logger('dev')) // comment out for deployment
-  .use(bodyParser.urlencoded({extended: true}))
+  .use(morgan('dev')) // comment out for deployment
+  .use(morgan('common', {stream: fs.createWriteStream('./access.log', {flags: 'a+'})}))
+  .use(jsonBodyParser)
 
   .set('views', './views')
   .set('view engine', 'ejs')
 
   .use(express.static('public'))
 
-  .use('/', index)
-  .use('/stories', stories)
-  .use('/story', story)
+  .use('/', indexRoute)
+  .use('/stories', storiesRoute)
+  .use('/story', storyRoute)
 
-  .use(error)
+  .use(errorRoute)
