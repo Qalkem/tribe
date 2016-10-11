@@ -49,6 +49,7 @@ describe('API', () => {
         .post('/story')
         .send({'title': 'whatever'})
         .end((err, res) => {
+          if (err) throw (err)
           res.should.have.status(200)
           res.body.should.be.a('object')
           res.body.should.have.property('SUCCESS')
@@ -58,7 +59,30 @@ describe('API', () => {
           done()
         })
     })
-    it('should patch a SINGLE story on /story/<id> PUT / PATCH')
-    it('should delete a SINGLE story on /story/<id> DELETE')
+    it('should patch a SINGLE story on /story PATCH', (done) => {
+      chai.request(server)
+        .patch('/story')
+        .send({'title': 'whatever'})
+        .end((err, res) => {
+          if (err) throw (err)
+          res.should.have.status(200)
+          res.body.should.be.a('object')
+          res.body.should.have.property('SUCCESS')
+          // TODO: Details
+          done()
+        })
+    })
+    it('should delete a SINGLE story on /story/<id> DELETE', (done) => {
+      chai.request(server)
+        .delete('/story/:id')
+        .send({'id':1})
+        .end((err, res) => {
+          if (err) throw (err)
+          res.should.have.status(200)
+          res.body.should.be.a('object')
+          res.body.should.have.property('SUCCESS')
+          done()
+        })
+    })
   })
 })

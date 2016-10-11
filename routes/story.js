@@ -19,10 +19,18 @@ module.exports = express.Router()
   // Patch a SINGLE story based on post-vars
   .patch('/', (req, res) => {
     // TODO: hook up db
-    res.json({})
+    res.json({
+      'SUCCESS': {
+        'id': 1
+      }
+    })
   })
   // Delete a SINGLE story based on <id>
   .delete('/:id', (req, res) => {
     // TODO: hook up db
-    res.json()
+    res.json({
+      'SUCCESS': {
+        'id': 1
+      }
+    })
   })
