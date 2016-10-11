@@ -1,26 +1,25 @@
-// shop for supplies
+const fs = require('fs')
 const express = require('express')
-const ejs = require('ejs')
+const logger = require('morgan')
+const bodyParser = require('body-parser')
 
-// plan the trip
 const index = require('./routes/index')
 const stories = require('./routes/stories')
 const story = require('./routes/story')
 const error = require('./routes/error')
 
-// hop on the express
 module.exports = express()
-  // talk about the views we got
+  .use(logger('common', {stream: fs.createWriteStream('./logs/access.log', {flags: 'a'})}))
+  .use(logger('dev')) // comment out for deployment
+  .use(bodyParser.urlencoded({extended: true}))
+
   .set('views', './views')
   .set('view engine', 'ejs')
 
-  // public is (ec)static
   .use(express.static('public'))
 
-  // show the route
   .use('/', index)
   .use('/stories', stories)
   .use('/story', story)
 
-  // public likes to err, tell them
   .use(error)
