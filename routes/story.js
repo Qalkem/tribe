@@ -8,7 +8,7 @@ module.exports = express.Router()
   })
   // Add a SINGLE story based on post-vars
   .post('/', (req, res) => {
-    // TODO: hook up db
+    // TODO: hook up db, add a field to the db blok1_16_17
     res.json({
       'SUCCESS': {
         'id': 1,

@@ -1,3 +1,170 @@
-body {
-  background-color: papayawhip;
+* {
+  box-sizing: border-box;
 }
+body{
+  font-size: 1em;
+  font-family: "open sans",helvetica, verdana, sans-serive;
+  max-width: 34em;
+  margin: 0 auto;
+}
+header{
+  margin: 1em;
+  padding: 1em;
+}
+
+
+/* FORM */
+form{
+  display: flex;
+  flex-flow: column;
+}
+form > * {
+  flex: 1 100%;
+}
+
+form label{
+  margin: 1em 0;
+  display: block;
+}
+form input{
+  font-size: 1em;
+  padding: 0.5em;
+}
+form button{
+  position: relative;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 1em 3em;
+  margin: 1em 0;
+  border: 0;
+  border-radius: 0.5em;
+}
+form fieldset{
+  margin: 1.4em;
+  margin-top: 0;
+  padding: 1em;
+  border: none;
+  border-radius: 1em;
+}
+fieldset h2{
+  font-size: 2em;
+  margin-top: 0.5em;
+}
+
+
+/*FORM om in te loggen*/
+/* DESIGNER */
+fieldset.designer{
+  background: #F9E79F;
+}
+  fieldset.designer h2{
+    color: #7D6608;
+  }
+  fieldset.designer ol{
+    padding: 0;
+    margin:1em;
+  }
+  fieldset.designer a{
+    color: #000;
+  }
+  fieldset.designer button[value*=log]{
+    background: #F1C40F;
+    color: #650;
+    box-shadow: 0 0.4em #7D6608;
+  }
+  fieldset.designer button[value*=log]:hover {
+    box-shadow: 0 0.5em #7D6608;
+    top: -0.1em;
+  }
+  fieldset.designer button[value*=log]:active {
+    box-shadow: 0 0.1em #7D6608;
+    top: 0.5em;
+  }
+  fieldset.designer ol{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    text-align: center;
+    margin:0;
+    padding:0;
+    list-style-position: inside;
+  }
+  fieldset.designer li{
+    margin: 0;
+    padding: 0;
+    max-width:9em;
+    flex-grow:1;
+  }
+  fieldset.designer li:hover{
+  }
+  fieldset.designer li>a>div{
+    height: 11em;
+    -webkit-clip-path: circle(4em at 4em 6em);
+    clip-path: circle(4em at 4em 4em);
+  }
+
+
+/* FORM voor het uploaden van een vormgegeven verhaal verhaal*/
+/* BESCHRIJVING van het verhaal */
+fieldset.description{
+  background: #ABEBC6;
+}
+  fieldset.description h2{
+    color: #186A3B;
+  }
+  fieldset.description input[name=story] {
+    width: 4em;
+  }
+  fieldset.description input[name=font-ratio] {
+    width: 4em;
+  }
+  fieldset.description input[type=color]{
+    padding: 0.1em;
+    margin: 0.2em;
+    height: 3em;
+  }
+
+/* UPLOAD  S, M, L, XL voor het verhaal */
+fieldset.upload{
+  background: #58D68D;
+}
+  fieldset.upload h2{
+    color: #fff;
+  }
+  fieldset.upload input[name*=width]{
+    width: 5em;
+  }
+  fieldset.upload input[name=width-small]{
+    background: #58D68D;
+  }
+
+fieldset.submit{
+  margin-top: -1.4em;
+}
+  fieldset.submit button[value=update]{
+    background: #28B463;
+    color: #040;
+    box-shadow: 0 0.4em #186A3B;
+  }
+  fieldset.submit button[value=update]:hover{
+    box-shadow: 0 0.5em #186A3B;
+    top: -0.1em;
+  }
+  fieldset.submit button[value=update]:active{
+    box-shadow: 0 0.1em #186A3B;
+    color: #FFF;
+    top: 0.5em;
+  }
+  fieldset.submit button[value=delete]{
+    background: #E74C3C;
+    color: #400;
+    box-shadow: 0 0.4em #78281F;
+  }
+  fieldset.submit button[value=delete]:hover{
+    box-shadow: 0 0.5em #78281F;
+  }
+fieldset.submit button[value=delete]:active{
+    box-shadow: 0 0.1em #78281F;
+    color: #FFF;
+  }

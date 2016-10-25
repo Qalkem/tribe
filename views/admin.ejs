@@ -1,0 +1,85 @@
+<%- include('partials/head.ejs') %>
+
+<header>
+  <h1>Responsive vormgeving van 3 verhalen</h1>
+  <p>Voor project WEB moet je de vormgeving van de 3 verhalen hier uploaden. Voor ieder verhaal moet je een aantal schermen uploaden. Responsive-ontwerp-weetjewel.</p>
+  <p>Het gemaakte werk van alle studenten kan met een <a href="/">REST API</a> online worden bekeken en gebruikt. Zo kan je filters en sorts bouwen voor je prototype die het echt doen.</p>
+</header>
+
+<form action="/admin/logout">
+<fieldset class="designer">
+  <h2>De verhalen van <%= session.fullname %></h2>
+
+  <ol>
+  <% for(let i = 0; i < stories.length; i++) {%>
+     <li><a href=""><%= stories[i].titel %></a></li>
+  <% } %>
+
+    <li>
+      <a href="">
+        <div><img src="https://github.com/CMDA/FED1/blob/gh-pages/Opdrachten/assets/VRM2%20Droom_small.png?raw=true"></div>
+        Droom (23)
+      </a>
+    </li>
+    <li>
+      <a href="">
+        <div><img src="https://github.com/CMDA/FED1/blob/gh-pages/Opdrachten/assets/VRM2%20verwarde%20man_small.png?raw=true"></div>
+        De verwarde man (41)
+      </a>
+    </li>
+    <li>
+      <a href="">
+        <div><img src="https://github.com/CMDA/FED1/blob/gh-pages/Opdrachten/assets/VRM2%20Schoorsteen_small.png?raw=true"></div>
+        Schoorsteen (79)
+      </a>
+    </li>
+  </ol>
+  <button type="submit" value="logout" onclick="">log uit</button>
+
+</fieldset>
+</form>
+
+
+<form>
+<fieldset class=description>
+  <h2>Vormgeving beschrijving</h2>
+  <p>Upload hier de responsive vormgeving van één verhaal in .jpg of .png. Beschrijf je vormgeving met het sfeerwoord, een paar tags, en de vormgeving specificaties. Upload 4 verschillende versies per verhaal voor verschillende apparaten: Small, Medium, Large en XLarge. Noteer per versie de minimale scherm-breedte.</p>
+  <input type="hidden" name="blok" value="1516 blok 1">
+  <label>Verhaal nr: <input type=number name=story placeholder="99"></label>
+  <label>Genre: <input type=text name=genre placeholder=""></label>
+  <label>Sfeerwoord: <input type="text" name=sphere placeholder=""></label>
+  <label>Tags: <input type=text name=tags placeholder="tags,tags,tags"> (comma seperated)</label>
+  <label>Typografie: <input type=text name=display-typo placeholder=display><input type=text name=copy-typo placeholder="copy text"></label>
+  <label>Font ratio: <input type=number name=font-ratio placeholder="1.16"></label>
+  <label>Kleurgebruik: <input type=color name=color1 placeholder=""><input type=color name=color2 placeholder=""><input type=color name=color3 placeholder=""> (web-safe hex colors)</label>
+</fieldset>
+
+<fieldset class=upload>
+  <h2>Upload for Small screens</h2>
+  <label><input type=file name=file-small></label>
+  <label>Minimale schermbreedte <input type=number name=width-small placeholder="in em" disabled> em</label>
+</fieldset>
+ <fieldset class=upload>
+   <h2>Upload for Medium screens</h2>
+  <label><input type=file name=file-medium></label>
+  <label>Minimale schermbreedte <input type=number name=width-medium placeholder="in em"> em</label>
+</fieldset>
+<fieldset class=upload>
+  <h2>Upload for Large screens</h2>
+  <label><input type=file name=file-large></label>
+  <label>Minimale schermbreedte <input type=number name=width-large placeholder="in em"> em</label>
+</fieldset>
+<fieldset class=upload>
+  <h2>Upload XLarge screens</h2>
+  <label><input type=file name=file-xl></label>
+  <label>Minimale schermbreedte <input type=number name=width-xl placeholder="in em"> em</label>
+</fieldset>
+
+<fieldset class=submit>
+  <button type=submit value=update>verhaal opslaan</button>
+  <button type=submit value=delete>verhaal verwijderen</button
+</fieldset>
+</form>
+
+
+<%- include('partials/foot.ejs') %>

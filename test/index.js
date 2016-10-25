@@ -2,7 +2,7 @@
 const chai = require('chai')
 const chaiHttp = require('chai-http')
 const server = require('../app')
-var should = chai.should()
+const should = chai.should()
 
 chai.use(chaiHttp)
 
@@ -75,7 +75,7 @@ describe('API', () => {
     it('should delete a SINGLE story on /story/<id> DELETE', (done) => {
       chai.request(server)
         .delete('/story/:id')
-        .send({'id':1})
+        .send({'id': 1})
         .end((err, res) => {
           if (err) throw (err)
           res.should.have.status(200)
@@ -85,4 +85,9 @@ describe('API', () => {
         })
     })
   })
+})
+describe('Interface', () => {
+  it('should present a tool to form queries on /')
+  it('should present a login form on /add when there is no active session')
+  it('should present an add form on /add when there is an active session')
 })

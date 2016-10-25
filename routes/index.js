@@ -6,8 +6,3 @@ module.exports = express.Router()
     res.locals.pagetitle = 'Blok Web API'
     res.render('index')
   })
-
-  // TODO: enforce login using express sessions
-  .get('/add', (req, res) => {
-    res.render('addForm')
-  })
