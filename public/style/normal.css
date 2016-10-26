@@ -3,12 +3,13 @@
 }
 body{
   font-size: 1em;
-  font-family: "open sans",helvetica, verdana, sans-serive;
+  font-family: "open sans",helvetica, verdana, sans-serif;
   max-width: 34em;
   margin: 0 auto;
+  padding: 1em;
 }
 header{
-  margin: 1em;
+  margin: 1em 0;
   padding: 1em;
 }
 
@@ -30,19 +31,20 @@ form input{
   font-size: 1em;
   padding: 0.5em;
 }
-form button{
+form button, a.button{
   position: relative;
+  display: inline-block;
   font-size: 1.2em;
   font-weight: bold;
   text-transform: uppercase;
-  padding: 1em 3em;
+  text-decoration: none;
+  padding: 1em 2em;
   margin: 1em 0;
   border: 0;
   border-radius: 0.5em;
 }
 form fieldset{
-  margin: 1.4em;
-  margin-top: 0;
+  margin: 1em 0;
   padding: 1em;
   border: none;
   border-radius: 1em;
@@ -54,6 +56,12 @@ fieldset h2{
 
 
 /*FORM om in te loggen*/
+
+/* link naar admin page */
+a.button{
+  margin-left: 1em;
+}
+
 /* DESIGNER */
 fieldset.designer{
   background: #F9E79F;
@@ -68,16 +76,16 @@ fieldset.designer{
   fieldset.designer a{
     color: #000;
   }
-  fieldset.designer button[value*=log]{
+  button[value*=log], a.button {
     background: #F1C40F;
     color: #650;
     box-shadow: 0 0.4em #7D6608;
   }
-  fieldset.designer button[value*=log]:hover {
+  button[value*=log]:hover, a.button:hover {
     box-shadow: 0 0.5em #7D6608;
     top: -0.1em;
   }
-  fieldset.designer button[value*=log]:active {
+  button[value*=log]:active, a.button:active {
     box-shadow: 0 0.1em #7D6608;
     top: 0.5em;
   }
@@ -142,29 +150,31 @@ fieldset.upload{
 fieldset.submit{
   margin-top: -1.4em;
 }
-  fieldset.submit button[value=update]{
+  button[value=update]{
     background: #28B463;
     color: #040;
     box-shadow: 0 0.4em #186A3B;
   }
-  fieldset.submit button[value=update]:hover{
+  button[value=update]:hover{
     box-shadow: 0 0.5em #186A3B;
     top: -0.1em;
   }
-  fieldset.submit button[value=update]:active{
+  button[value=update]:active{
     box-shadow: 0 0.1em #186A3B;
     color: #FFF;
     top: 0.5em;
   }
-  fieldset.submit button[value=delete]{
+  button[value=delete]{
     background: #E74C3C;
     color: #400;
     box-shadow: 0 0.4em #78281F;
   }
-  fieldset.submit button[value=delete]:hover{
+  button[value=delete]:hover{
     box-shadow: 0 0.5em #78281F;
+    top: -0.1em;
   }
-fieldset.submit button[value=delete]:active{
+  button[value=delete]:active{
     box-shadow: 0 0.1em #78281F;
     color: #FFF;
+    top: 0.5em;
   }

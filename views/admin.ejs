@@ -1,11 +1,5 @@
 <%- include('partials/head.ejs') %>
 
-<header>
-  <h1>Responsive vormgeving van 3 verhalen</h1>
-  <p>Voor project WEB moet je de vormgeving van de 3 verhalen hier uploaden. Voor ieder verhaal moet je een aantal schermen uploaden. Responsive-ontwerp-weetjewel.</p>
-  <p>Het gemaakte werk van alle studenten kan met een <a href="/">REST API</a> online worden bekeken en gebruikt. Zo kan je filters en sorts bouwen voor je prototype die het echt doen.</p>
-</header>
-
 <form action="/admin/logout">
 <fieldset class="designer">
   <h2>De verhalen van <%= session.fullname %></h2>
@@ -80,6 +74,5 @@
   <button type=submit value=delete>verhaal verwijderen</button
 </fieldset>
 </form>
-
 
 <%- include('partials/foot.ejs') %>
