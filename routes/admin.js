@@ -20,14 +20,12 @@ module.exports = express.Router()
             if (err) throw err
             // add an add button when there are less than three stories
             if (response.length <= 2) {
-              // TODO: create a stub story that creates the add button
-              /*res.push({RowDataPacket: {
-                verhaalnr: 666,
-                title: 'Toevoegen',
-                imgSmall: 'plus-icon-black.png'
-              }})*/
+              response.push({
+                verhaalId: 'add',
+                titel: 'Toevoegen',
+                imgMedium: 'Ferry Slot 60 S.jpg'
+              })
             }
-            // console.log(response)
             res.locals.stories = response
             res.locals.session = req.session
             res.render('admin')
@@ -37,6 +35,14 @@ module.exports = express.Router()
     } else {
       res.redirect(req.baseUrl + '/login')
     }
+  })
+
+  .get('/mod/add', (req, res) => {
+    console.log('add')
+  })
+
+  .get('/mod/:query', (req, res) => {
+    console.log('mod')
   })
 
   // Show the login form

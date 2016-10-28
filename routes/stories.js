@@ -42,7 +42,7 @@ module.exports = express.Router()
     })
   })
   // List SOME stories based on tags
-  .get('/genre/:query', (req, res) => {
+  .get('/tags/:query', (req, res) => {
     req.getConnection((err, db) => {
       if (err) throw err
       db.query(`SELECT * FROM verhalen WHERE tags LIKE "%${req.params.query}%"`, (err, dbres) => {

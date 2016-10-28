@@ -5,28 +5,14 @@
   <h2>De verhalen van <%= session.fullname %></h2>
 
   <ol>
-  <% for(let i = 0; i < stories.length; i++) {%>
-     <li><a href=""><%= stories[i].titel %></a></li>
+  <% for(let i = 0; i < stories.length; i++) { %>
+    <li>
+      <a href="/admin/mod/<%= stories[i].verhaalId %>">
+        <div><img src="/uploads/<%= stories[i].imgMedium %>"></div>
+        <%= stories[i].titel %>
+      </a>
+    </li>
   <% } %>
-
-    <li>
-      <a href="">
-        <div><img src="https://github.com/CMDA/FED1/blob/gh-pages/Opdrachten/assets/VRM2%20Droom_small.png?raw=true"></div>
-        Droom (23)
-      </a>
-    </li>
-    <li>
-      <a href="">
-        <div><img src="https://github.com/CMDA/FED1/blob/gh-pages/Opdrachten/assets/VRM2%20verwarde%20man_small.png?raw=true"></div>
-        De verwarde man (41)
-      </a>
-    </li>
-    <li>
-      <a href="">
-        <div><img src="https://github.com/CMDA/FED1/blob/gh-pages/Opdrachten/assets/VRM2%20Schoorsteen_small.png?raw=true"></div>
-        Schoorsteen (79)
-      </a>
-    </li>
   </ol>
   <button type="submit" value="logout" onclick="">log uit</button>
 
