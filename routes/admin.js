@@ -23,12 +23,12 @@ module.exports = express.Router()
               response.push({
                 verhaalId: 'add',
                 titel: 'Toevoegen',
-                imgMedium: 'Ferry Slot 60 S.jpg'
+                imgMedium: 'plus-icon-black.png'
               })
             }
             res.locals.stories = response
             res.locals.session = req.session
-            res.render('admin')
+            res.render('admin/index')
           })
         })
       })
@@ -38,11 +38,75 @@ module.exports = express.Router()
   })
 
   .get('/mod/add', (req, res) => {
-    console.log('add')
+    if (req.session.login) {
+      req.getConnection((err, db) => {
+        if (err) throw err
+        // Select all stories for the designer panel
+        db.query(`SELECT * FROM verhalen WHERE hvaId = "${req.session.studentid}"`, (err, response) => {
+          if (err) throw err
+          // add an add button when there are less than three stories
+          if (response.length <= 2) {
+            response.push({
+              verhaalId: 'add',
+              titel: 'Toevoegen',
+              imgMedium: 'plus-icon-black.png'
+            })
+          }
+          res.locals.stories = response
+          res.locals.session = req.session
+          res.locals.story = { // stub for add form
+            verhaalId: null,
+            hvaId: null,
+            verhaalnr: null,
+            genre: null,
+            sfeerwoord: null,
+            tags: null,
+            titel: null,
+            imgSmall: null,
+            sizeSmall: null,
+            imgeMedium: null,
+            sizeMedium: null,
+            imgLarge: null,
+            sizeLarge: null,
+            imgXLarge: null,
+            sizeXLarge: null,
+            typeDisplay: null,
+            typeCopyText: null,
+            fontRatio: null,
+            color_one: null,
+            color_two: null,
+            vak: null,
+            datum: null
+          }
+          // Present the form
+          res.render('admin/storyform')
+        })
+      })
+    } else {
+      res.redirect(req.baseUrl + '/login')
+    }
+  })
+
+  .post('/mod/add', (req, res) => {
+    // console.log(req.body)
+    if (req.session.login) {
+      req.getConnection((err, db) => {
+        if (err) throw err
+
+        let insert = {}
+        insert.cols = Object.keys(req.body).filter((value, index) => req.body[value] !== '')
+        insert.vals = insert.cols.map((value, index) => req.body[value])
+
+        db.query('INSERT INTO verhalen (hvaId, ' + insert.cols.join(', ') + ', datum) VALUES ("' + req.session.studentid + '", "' + insert.vals.join('", "') + '", NOW())', (err, response) => {
+          if (err) throw err
+          res.redirect(req.baseUrl)
+        })
+      })
+    }
   })
 
   .get('/mod/:query', (req, res) => {
-    console.log('mod')
+    console.log('mod nr ' + req.params.query)
   })
 
   // Show the login form
