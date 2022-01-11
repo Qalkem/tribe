@@ -1,4 +1,4 @@
-# blokweb-api
+# fdnd-api
 
 [![Build Status][build-badge]][build-status]
 [![JavaScript Style Guide][javascript-style-guide-badge]][standard]
