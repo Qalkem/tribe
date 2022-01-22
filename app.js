@@ -5,16 +5,14 @@ const bodyParser = require('body-parser')
 
 const indexRoute = require('./routes/index')
 // const tribeRoute = require('./routes/tribe')
-const tribesRoute = require('./routes/tribes')
+// const tribesRoute = require('./routes/tribes')
 
 // --- --- --- mysql test --- --- ---
 const mysql = require('mysql2')
 
-console.log(process.env.DB_NAME)
-
 // create the connection to database
 const connection = mysql.createConnection({
-  // host: process.env.DB_HOST,
+  host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
@@ -38,8 +36,8 @@ module.exports = express()
   .set('view engine', 'ejs')
 
   .use('/', indexRoute)
-  // .use('/tribe', tribeRoute)
-  .use('/tribes', tribesRoute)
+// .use('/tribe', tribeRoute)
+// .use('/tribes', tribesRoute)
 
 // const morgan = require('morgan')
 // const session = require('express-session')
