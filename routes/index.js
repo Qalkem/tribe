@@ -1,8 +1,9 @@
 const express = require('express')
 
-module.exports = express.Router()
+module.exports = express
+  .Router()
 
   .get('/', (req, res) => {
-    res.locals.pagetitle = 'Blok Web API'
+    res.locals.pagetitle = 'Tribe API'
     res.render('index')
   })

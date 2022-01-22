@@ -1,15 +1,15 @@
 {
-  "name": "blokweb-api",
-  "version": "1.0.0",
-  "description": "It's an API used during blok web",
+  "name": "tribe",
+  "version": "0.0.1",
+  "description": "It's an API used by Frontend Design & Development",
   "main": "main.js",
   "scripts": {
-    "start": "nodemon ./bin/www",
+    "start": "forever ./bin/www",
     "test": "mocha && standard --fix"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/CMDA/blokweb-api.git"
+    "url": "git+https://github.com/fdnd-apis/tribe"
   },
   "keywords": [
     "node",
@@ -17,27 +17,20 @@
     "api"
   ],
   "author": "Justus Sturkenboom <justus@ju5tu5.nl>",
+  "contributors": [
+    "Joost Faber <j.faber@hva.nl>"
+  ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/CMDA/blokweb-api/issues"
+    "url": "https://github.com/fdnd-apis/tribe/issues"
   },
-  "homepage": "https://github.com/CMDA/blokweb-api#readme",
-  "devDependencies": {
-    "chai": "^3.5.0",
-    "chai-http": "^3.0.0",
-    "mocha": "^3.1.0",
-    "nodemon": "^1.10.2",
-    "standard": "^8.3.0"
-  },
+  "homepage": "https://github.com/fdnd-apis/tribe#readme",
   "dependencies": {
-    "body-parser": "^1.15.2",
-    "ejs": "^2.5.2",
-    "express": "^4.14.0",
-    "express-myconnection": "^1.0.4",
-    "express-session": "^1.14.1",
-    "morgan": "^1.7.0",
-    "multer": "^1.2.0",
-    "mysql": "^2.11.1"
+    "body-parser": "^1.19.1",
+    "dotenv": "^14.2.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.2",
+    "mysql2": "^2.3.3"
   },
   "standard": {
     "ignore": [
