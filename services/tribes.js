@@ -1,13 +1,9 @@
 const db = require('./db')
 const helper = require('../helper')
 
-async function getMultiple(page = 1) {
-  const offset = helper.getOffset(page, process.env.listPerPage)
-  const rows = await db.query(
-    `SELECT * 
-    FROM tribe LIMIT ?,?`,
-    [offset, process.env.listPerPage]
-  )
+module.exports.getMultiple = async function (page = 1) {
+  const offset = helper.getOffset(page, process.env.LIST_PER_PAGE)
+  const rows = await db.query(`SELECT * FROM tribe LIMIT ?,?`, [offset, process.env.LIST_PER_PAGE])
   const data = helper.emptyOrRows(rows)
   const meta = { page }
 
@@ -15,8 +11,4 @@ async function getMultiple(page = 1) {
     data,
     meta,
   }
-}
-
-module.exports = {
-  getMultiple,
 }
