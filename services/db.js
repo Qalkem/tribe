@@ -1,6 +1,6 @@
 const mysql = require('mysql2/promise')
 
-async function query(sql, params) {
+module.exports.query = async function (sql, params) {
   const connection = await mysql.createConnection({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
@@ -9,8 +9,4 @@ async function query(sql, params) {
   })
   const [results] = await connection.execute(sql, params)
   return results
-}
-
-module.exports = {
-  query,
 }

@@ -4,6 +4,5 @@ module.exports = express
   .Router()
 
   .get('/', (req, res) => {
-    res.locals.pagetitle = 'Tribe API'
-    res.render('index')
+    res.json({ message: 'Welcome to the FDND tribes API.' })
   })
