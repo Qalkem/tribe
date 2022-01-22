@@ -4,7 +4,7 @@
   "description": "It's an API used by Frontend Design & Development",
   "main": "main.js",
   "scripts": {
-    "start": "forever ./bin/www",
+    "start": "./bin/www",
     "test": "mocha && standard --fix"
   },
   "repository": {
