@@ -10,6 +10,8 @@ const tribesRoute = require('./routes/tribes')
 // --- --- --- mysql test --- --- ---
 const mysql = require('mysql2')
 
+console.log(process.env)
+
 // create the connection to database
 const connection = mysql.createConnection({
   host: process.env.DB_HOST,
