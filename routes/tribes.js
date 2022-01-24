@@ -1,10 +1,14 @@
 const express = require('express')
-const tribe = require('../controllers/tribe.controller')
+const tribes = require('../services/tribes')
 
 module.exports = express
   .Router()
   // List ALL tribes
-  .post('/', tribe.create)
-  .get('/', tribe.findAll)
-  .get('/:id', tribe.findOne)
-  .put('/:id', tribe.update)
+  .get('/', async (req, res, next) => {
+    try {
+      res.json(await tribes.getMultiple(req.query.page))
+    } catch (err) {
+      console.error('Error while getting tribes: ', err.message)
+      next(err)
+    }
+  })
