@@ -1,5 +1,5 @@
 const express = require('express')
-const tribes = require('../models/tribe.model')
+const tribe = require('../models/tribe.model')
 
 module.exports = express
   .Router()
@@ -9,11 +9,20 @@ module.exports = express
   // List ALL tribes
   .get('/', async (req, res, next) => {
     try {
-      res.json(await tribes.getAll(req.query.page))
+      res.json(await tribe.getAll(req.query.page))
     } catch (err) {
       console.error('Error while getting tribes: ', err.message)
       next(err)
     }
   })
-// .get('/:id', tribe.findOne)
+  // Find a tribe by id
+  .get('/:id', async (req, res, next) => {
+    try {
+      res.json(await tribe.findById(req.params.id))
+    } catch (err) {
+      console.error('Error while getting tribes: ', err.message)
+      next(err)
+    }
+  })
+
 // .put('/:id', tribe.update)

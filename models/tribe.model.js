@@ -10,6 +10,22 @@ const Tribe = function (tribe) {
   this.url = tribe.url
 }
 
+Tribe.create = async function (newTribe) {
+  const rows = await db.query(`INSERT INTO tribe SET ?`, newTribe)
+  return {
+    data: helper.emptyOrRows(rows),
+    meta: {}, //insertId?
+  }
+}
+
+Tribe.findById = async function (tribeId) {
+  const rows = await db.query(`SELECT * FROM tribe WHERE tribeId = ?`, [tribeId])
+  return {
+    data: helper.emptyOrRows(rows),
+    meta: {},
+  }
+}
+
 Tribe.getAll = async function (page = 1) {
   const rows = await db.query(`SELECT * FROM tribe LIMIT ?,?`, [
     helper.getOffset(page, process.env.LIST_PER_PAGE),
@@ -20,18 +36,20 @@ Tribe.getAll = async function (page = 1) {
     data: helper.emptyOrRows(rows),
     meta: { page },
   }
-
-  // let query = 'SELECT * FROM tribe'
-  // db.query(query, (err, res) => {
-  //   if (err) {
-  //     console.log('Error: ', err)
-  //     result(null, err)
-  //     return
-  //   }
-
-  //   console.log('Tribes: ', res)
-  //   result(null, res)
-  // })
 }
+
+Tribe.updateById = async function (tribeId, tribe) {
+  const rows = await db.query(
+    'UPDATE tribe SET name = ?, cohort = ?, description = ?, avatar = ?, url = ? WHERE tribeId = ?',
+    [tribe.name, tribe.cohort, tribe.description, tribe.avatar, tribe.url, tribeId]
+  )
+  return {
+    data: helper.emptyOrRows(rows),
+    meta: {},
+  }
+}
+
+Tribe.remove = async function (tribeId) {}
+Tribe.removeAll = async function () {}
 
 module.exports = Tribe
