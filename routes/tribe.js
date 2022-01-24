@@ -1,36 +1,19 @@
 const express = require('express')
+const tribes = require('../models/tribe.model')
 
 module.exports = express
   .Router()
-  // List a SINGLE tribe based on <id>
-  .get('/:id', (req, res) => {
-    // TODO: hook up db
-    res.json({})
+
+  // .post('/', tribe.create)
+
+  // List ALL tribes
+  .get('/', async (req, res, next) => {
+    try {
+      res.json(await tribes.getAll(req.query.page))
+    } catch (err) {
+      console.error('Error while getting tribes: ', err.message)
+      next(err)
+    }
   })
-  // Add a SINGLE tribe based on post-vars
-  .post('/', (req, res) => {
-    res.json({
-      SUCCESS: {
-        id: 1,
-        title: req.body.title,
-      },
-    })
-  })
-  // Patch a SINGLE tribe based on post-vars
-  .patch('/', (req, res) => {
-    // TODO: hook up db
-    res.json({
-      SUCCESS: {
-        id: 1,
-      },
-    })
-  })
-  // Delete a SINGLE tribe based on <id>
-  .delete('/:id', (req, res) => {
-    // TODO: hook up db
-    res.json({
-      SUCCESS: {
-        id: 1,
-      },
-    })
-  })
+// .get('/:id', tribe.findOne)
+// .put('/:id', tribe.update)
