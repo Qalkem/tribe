@@ -15,12 +15,10 @@ Tribe.getAll = async function (page = 1) {
     helper.getOffset(page, process.env.LIST_PER_PAGE),
     process.env.LIST_PER_PAGE,
   ])
-  const data = helper.emptyOrRows(rows)
-  const meta = { page }
 
   return {
-    data,
-    meta,
+    data: helper.emptyOrRows(rows),
+    meta: { page },
   }
 
   // let query = 'SELECT * FROM tribe'
