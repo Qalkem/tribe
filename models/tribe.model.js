@@ -66,6 +66,12 @@ Tribe.getAll = async function (page = 1) {
   }
 }
 
+/**
+ *
+ * @param {*} tribeId
+ * @param {*} tribe
+ * @returns
+ */
 Tribe.updateById = async function (tribeId, tribe) {
   const rows = await db.query(
     'UPDATE tribe SET name = ?, cohort = ?, description = ?, avatar = ?, url = ? WHERE tribeId = ?',
