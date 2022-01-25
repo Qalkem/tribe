@@ -2,6 +2,7 @@ const express = require('express')
 
 module.exports = express
   .Router()
+
   // catch 404 and forward
   .use((req, res, next) => {
     next((new Error('Not Found').status = 404))

@@ -1,0 +1,50 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "FDND Tribe API",
+    "description": "It's an API that contains open info on all tribe members. Member information is handed over with consent and will be shared openly on the internet.",
+    "version": "0.0.1"
+  },
+  "servers": [
+    {
+      "url": "https://tribe.api.fdnd.nl/",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/tribe": {
+      "get": {
+        "description": "Returns all tribes from the system",
+        "responses": {
+          "200": {
+            "description": "A list of tribes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tribe/:id": {
+      "get": {
+        "description": "Returns a single tribe identiefied by :id from the system",
+        "responses": {
+          "200": {
+            "description": "A tribes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -2,6 +2,7 @@ const db = require('./db')
 const helper = require('./helper')
 
 const Tribe = function (tribe) {
+  // Check for sanity?
   this.tribeId = tribe.tribeId
   this.name = tribe.name
   this.cohort = tribe.cohort
@@ -10,11 +11,17 @@ const Tribe = function (tribe) {
   this.url = tribe.url
 }
 
-Tribe.create = async function (newTribe) {
-  const rows = await db.query(`INSERT INTO tribe SET ?`, newTribe)
+Tribe.create = async function (tribe) {
+  const rows = await db.query(
+    `INSERT INTO tribe SET name=?, cohort=?, description=?, avatar=?, url=?`,
+    prepareForInsert(tribe)
+  )
+  tribe.tribeId = rows.insertId
   return {
-    data: helper.emptyOrRows(rows),
-    meta: {}, //insertId?
+    data: [tribe],
+    meta: {
+      insertId: rows.insertId,
+    },
   }
 }
 
@@ -51,5 +58,15 @@ Tribe.updateById = async function (tribeId, tribe) {
 
 Tribe.remove = async function (tribeId) {}
 Tribe.removeAll = async function () {}
+
+/**
+ * Prepares a passed tribe object for insertion in the db, it's mostly an order
+ * thing as the insert query expects an array with a certain order.
+ * @param {*} tribe a new tribe object created with the Tribe constructor
+ * @returns [] an array to be used in the insert query
+ */
+function prepareForInsert(tribe) {
+  return [tribe.name, tribe.cohort, tribe.description, tribe.avatar, tribe.url]
+}
 
 module.exports = Tribe

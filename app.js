@@ -10,5 +10,5 @@ module.exports = express()
   .use(express.urlencoded({ extended: true }))
 
   .use('/', indexRoute)
-  .use('/tribe', tribeRoute)
+  .use('/v1/tribe', tribeRoute)
   .use(errorRoute)
