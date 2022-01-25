@@ -1,8 +1,13 @@
 const db = require('./db')
 const helper = require('./helper')
 
+/**
+ * Constructor for new tribes that checks if the passed object adheres the format
+ * we need and throws errors if it doesn't
+ * @param {*} tribe an object containing the necessary fields to make a new tribe
+ */
 const Tribe = function (tribe) {
-  // Check for sanity?
+  // TODO: Check for sanity...
   this.tribeId = tribe.tribeId
   this.name = tribe.name
   this.cohort = tribe.cohort
@@ -11,6 +16,11 @@ const Tribe = function (tribe) {
   this.url = tribe.url
 }
 
+/**
+ * Add a new tribe to the database
+ * @param {*} tribe a new tribe object created with the Tribe constructor
+ * @returns an object containing the inserted tribe with the newly inserted tribeId
+ */
 Tribe.create = async function (tribe) {
   const rows = await db.query(
     `INSERT INTO tribe SET name = ?, cohort = ?, description = ?, avatar = ?, url = ?`,
@@ -25,14 +35,25 @@ Tribe.create = async function (tribe) {
   }
 }
 
+/**
+ * Find a corresponding tribe in the database using the passed tribeId
+ * @param {*} tribeId a tribeId to lookup in the database
+ * @returns an object with the found tribe
+ */
 Tribe.findById = async function (tribeId) {
   const rows = await db.query(`SELECT * FROM tribe WHERE tribeId = ?`, [tribeId])
   return {
     data: helper.emptyOrRows(rows),
-    meta: {},
+    meta: { tribeId },
   }
 }
 
+/**
+ * Get all tribes from the database, will be paginated if the number of
+ * tribes in the database exceeds process.env.LIST_PER_PAGE
+ * @param {*} page the page of tribes you want to get
+ * @returns
+ */
 Tribe.getAll = async function (page = 1) {
   const rows = await db.query(`SELECT * FROM tribe LIMIT ?,?`, [
     helper.getOffset(page, process.env.LIST_PER_PAGE),
