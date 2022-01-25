@@ -13,7 +13,7 @@ const Tribe = function (tribe) {
 
 Tribe.create = async function (tribe) {
   const rows = await db.query(
-    `INSERT INTO tribe SET name=?, cohort=?, description=?, avatar=?, url=?`,
+    `INSERT INTO tribe SET name = ?, cohort = ?, description = ?, avatar = ?, url = ?`,
     prepareForInsert(tribe)
   )
   tribe.tribeId = rows.insertId
