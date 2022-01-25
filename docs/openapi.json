@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "https://tribe.api.fdnd.nl/",
+      "url": "https://tribe.api.fdnd.nl/v1/",
       "description": "Production server"
     }
   ],
