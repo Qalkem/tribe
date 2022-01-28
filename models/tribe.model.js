@@ -36,6 +36,26 @@ Tribe.create = async function (tribe) {
 }
 
 /**
+ * Update a tribe in the database, should return a usefull message if anything
+ * goes wrong.. but we still have to fix this..
+ * @param {*} tribe the tribe object to be updated, created with the Tribe constructor
+ * @returns
+ */
+Tribe.updateById = async function (tribe) {
+  const rows = await db.query(
+    'UPDATE tribe SET name = ?, cohort = ?, description = ?, avatar = ?, url = ? WHERE tribeId = ?',
+    prepareForUpdate(tribe)
+  )
+  return {
+    data: helper.emptyOrRows(rows),
+    meta: {},
+  }
+}
+
+Tribe.remove = async function (tribeId) {}
+Tribe.removeAll = async function () {}
+
+/**
  * Find a corresponding tribe in the database using the passed tribeId
  * @param {*} tribeId a tribeId to lookup in the database
  * @returns an object with the found tribe
@@ -62,29 +82,14 @@ Tribe.getAll = async function (page = 1) {
 
   return {
     data: helper.emptyOrRows(rows),
-    meta: { page },
+    meta: {
+      page: page,
+      limit: process.env.LIST_PER_PAGE,
+    },
   }
 }
 
-/**
- *
- * @param {*} tribeId
- * @param {*} tribe
- * @returns
- */
-Tribe.updateById = async function (tribeId, tribe) {
-  const rows = await db.query(
-    'UPDATE tribe SET name = ?, cohort = ?, description = ?, avatar = ?, url = ? WHERE tribeId = ?',
-    [tribe.name, tribe.cohort, tribe.description, tribe.avatar, tribe.url, tribeId]
-  )
-  return {
-    data: helper.emptyOrRows(rows),
-    meta: {},
-  }
-}
-
-Tribe.remove = async function (tribeId) {}
-Tribe.removeAll = async function () {}
+module.exports = Tribe
 
 /**
  * Prepares a passed tribe object for insertion in the db, it's mostly an order
@@ -93,7 +98,17 @@ Tribe.removeAll = async function () {}
  * @returns [] an array to be used in the insert query
  */
 function prepareForInsert(tribe) {
+  // TODO: Check for sanity...
   return [tribe.name, tribe.cohort, tribe.description, tribe.avatar, tribe.url]
 }
 
-module.exports = Tribe
+/**
+ * Prepares a passed tribe object for updating in the db, it's mostly an order
+ * thing as the insert query expects an array with a certain order.
+ * @param {*} tribe the tribe object to be updated, created with the Tribe constructor
+ * @returns an array to be used in the update query
+ */
+function prepareForUpdate(tribe) {
+  // TODO: Check for sanity...
+  return [...prepareForInsert(tribe), tribe.tribeId]
+}

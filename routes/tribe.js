@@ -14,7 +14,7 @@ module.exports = express
     }
   })
 
-  // List ALL tribes
+  // Get a list of all tribes
   .get('/', async (req, res, next) => {
     try {
       res.json(await Tribe.getAll(req.query.page))
@@ -32,6 +32,12 @@ module.exports = express
       next(err)
     }
   })
-
-// .patch('/:id', tribe.update)
+  // Update a tribe
+  .patch('/', async (req, res, next) => {
+    try {
+      res.json(await Tribe.create(new Tribe(req.body)))
+    } catch (err) {
+      console.error('Error patching tribe: ', err.message)
+    }
+  })
 // .delete('/:id', tribe.delete)

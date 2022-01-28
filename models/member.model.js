@@ -18,8 +18,8 @@ const member = function (member) {
   this.url = member.url
   this.githubHandle = member.githubHandle
   this.nickname = member.nickname
-  this.type = member.type
   this.bio = member.bio
+  this.type = member.type
 }
 
 /**
@@ -27,9 +27,9 @@ const member = function (member) {
  * @param {*} member a new member object created with the member constructor
  * @returns an object containing the inserted member with the newly inserted memberId
  */
-member.create = async function (member, squadId) {
+member.create = async function (member) {
   const rows = await db.query(
-    `INSERT INTO member SET name = ?, prefix = ?, surname = ?,memberId = ?, squadId = ${squadId} ?, description = ?, avatar = ?, url = ?, nickname = ?, githubHandle = ?, bio = ?, type = ?,`,
+    `INSERT INTO member SET name = ?, prefix = ?, surname = ?, description = ?, avatar = ?, url = ?, nickname = ?, githubHandle = ?, bio = ?, type = ?, squadId = ?`,
     prepareForInsert(member)
   )
   member.memberId = rows.insertId
@@ -38,6 +38,36 @@ member.create = async function (member, squadId) {
     meta: {
       insertId: rows.insertId,
     },
+  }
+}
+
+/**
+ *
+ * @param {*} memberId
+ * @param {*} member
+ * @returns
+ */
+member.updateById = async function (memberId, member) {
+  const rows = await db.query(
+    `UPDATE member SET name = ?, prefix = ?, surname = ?, description = ?, avatar = ?, url = ?, nickname = ?, githubHandle = ?, bio = ?, type = ?, squadId = ?, WHERE memberId = ?`,
+    [
+      member.name,
+      member.prefix,
+      member.surname,
+      member.description,
+      member.avatar,
+      member.url,
+      member.nickname,
+      member.githubHandle,
+      member.bio,
+      member.type,
+      member.squadId,
+      memberId,
+    ]
+  )
+  return {
+    data: helper.emptyOrRows(rows),
+    meta: {},
   }
 }
 
@@ -72,23 +102,6 @@ member.getAll = async function (page = 1) {
   }
 }
 
-/**
- *
- * @param {*} memberId
- * @param {*} member
- * @returns
- */
-member.updateById = async function (memberId, member) {
-  const rows = await db.query(
-    `UPDATE member SET name = ?, prefix = ?, surname = ?, squadId = ?, description = ?, avatar = ?, url = ?, nickname = ?, githubHandle = ?, bio = ?, type = ?, WHERE memberId = ?`,
-    [member.name, member.prefix, member.surname, member.description, member.avatar, member.url, memberId, member.squadId, member.nickname, member.githubHandle, member.bio, member.type]
-  )
-  return {
-    data: helper.emptyOrRows(rows),
-    meta: {},
-  }
-}
-
 member.remove = async function (memberId) {}
 member.removeAll = async function () {}
 
@@ -99,7 +112,20 @@ member.removeAll = async function () {}
  * @returns [] an array to be used in the insert query
  */
 function prepareForInsert(member) {
-  return [member.name, member.prefix, member.surname, member.description, member.avatar, member.url, memberId, member.squadId, member.nickname, member.githubHandle, member.bio, member.type]
+  return [
+    member.name,
+    member.prefix,
+    member.surname,
+    member.description,
+    member.avatar,
+    member.url,
+    member.squadId,
+    member.nickname,
+    member.githubHandle,
+    member.bio,
+    member.type,
+    member.squadId,
+  ]
 }
 
 module.exports = member

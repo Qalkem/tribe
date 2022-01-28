@@ -21,9 +21,9 @@ const Squad = function (squad) {
  * @param {*} squad a new squad object created with the squad constructor
  * @returns an object containing the inserted squad with the newly inserted squadId
  */
-squad.create = async function (squad, tribeId) {
+Squad.create = async function (squad) {
   const rows = await db.query(
-    `INSERT INTO squad SET name = ?, squadId= ?, tribeId= ${tribeId}, description = ?, avatar = ?, url = ?`,
+    `INSERT INTO squad SET name = ?, description = ?, avatar = ?, url = ?, tribeId= ?`,
     prepareForInsert(squad)
   )
   squad.squadId = rows.insertId
@@ -36,11 +36,31 @@ squad.create = async function (squad, tribeId) {
 }
 
 /**
+ *
+ * @param {*} squadId
+ * @param {*} squad
+ * @returns
+ */
+Squad.update = async function (squad) {
+  const rows = await db.query(
+    'UPDATE squad SET name = ?, description = ?, avatar = ?, url = ?, tribeId = ? WHERE squadId = ?',
+    prepareForUpdate(squad)
+  )
+  return {
+    data: helper.emptyOrRows(rows),
+    meta: {},
+  }
+}
+
+Squad.remove = async function (squadId) {}
+Squad.removeAll = async function () {}
+
+/**
  * Find a corresponding squad in the database using the passed squadId
  * @param {*} squadId a squadId to lookup in the database
  * @returns an object with the found squad
  */
-squad.findById = async function (squadId) {
+Squad.findById = async function (squadId) {
   const rows = await db.query(`SELECT * FROM squad WHERE squadId = ?`, [squadId])
   return {
     data: helper.emptyOrRows(rows),
@@ -54,7 +74,7 @@ squad.findById = async function (squadId) {
  * @param {*} page the page of squads you want to get
  * @returns
  */
-squad.getAll = async function (page = 1) {
+Squad.getAll = async function (page = 1) {
   const rows = await db.query(`SELECT * FROM squad LIMIT ?,?`, [
     helper.getOffset(page, process.env.LIST_PER_PAGE),
     process.env.LIST_PER_PAGE,
@@ -62,29 +82,14 @@ squad.getAll = async function (page = 1) {
 
   return {
     data: helper.emptyOrRows(rows),
-    meta: { page },
+    meta: {
+      page: page,
+      limit: process.env.LIST_PER_PAGE,
+    },
   }
 }
 
-/**
- *
- * @param {*} squadId
- * @param {*} squad
- * @returns
- */
-squad.updateById = async function (squadId, squad) {
-  const rows = await db.query(
-    'UPDATE squad SET name = ?, tribeId = ?, description = ?, avatar = ?, url = ? WHERE squadId = ?',
-    [squad.name, squad.tribeId, squad.description, squad.avatar, squad.url, squadId]
-  )
-  return {
-    data: helper.emptyOrRows(rows),
-    meta: {},
-  }
-}
-
-squad.remove = async function (squadId) {}
-squad.removeAll = async function () {}
+module.exports = Squad
 
 /**
  * Prepares a passed squad object for insertion in the db, it's mostly an order
@@ -93,7 +98,15 @@ squad.removeAll = async function () {}
  * @returns [] an array to be used in the insert query
  */
 function prepareForInsert(squad) {
-  return [squad.name, squad.tribeId, squad.description, squad.avatar, squad.url]
+  return [squad.name, squad.description, squad.avatar, squad.url, squad.tribeId]
 }
 
-module.exports = squad
+/**
+ *
+ * @param {*} squad
+ * @returns
+ */
+function prepareForUpdate(squad) {
+  // TODO: Check for sanity...
+  return [...prepareForInsert(squad), squad.squadId]
+}

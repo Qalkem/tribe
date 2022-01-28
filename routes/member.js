@@ -8,7 +8,7 @@ module.exports = express
   // Add a new member
   .post('/member', async (req, res, next) => {
     try {
-      res.json(await Member.create(new Member(req.body), squadId))
+      res.json(await Member.create(new Member(req.body)))
     } catch (err) {
       console.error('Error while adding member: ', err.message)
       next(err)
