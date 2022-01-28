@@ -5,7 +5,7 @@ module.exports = express
   .Router()
 
   // Add a new team
-  .post('/team', async (req, res, next) => {
+  .post('/', async (req, res, next) => {
     try {
       res.json(await Team.create(new Team(req.body)))
     } catch (err) {
@@ -15,7 +15,7 @@ module.exports = express
   })
 
   // List ALL teams
-  .get('/team', async (req, res, next) => {
+  .get('/', async (req, res, next) => {
     try {
       res.json(await Team.getAll(req.query.page))
     } catch (err) {
@@ -24,7 +24,7 @@ module.exports = express
     }
   })
   // Find a team by id
-  .get('team/:id', async (req, res, next) => {
+  .get('/:id', async (req, res, next) => {
     try {
       res.json(await Team.findById(req.params.id))
     } catch (err) {
@@ -33,5 +33,14 @@ module.exports = express
     }
   })
 
-// .patch('/:id', team.update)
+  // Update a team
+  .patch('/', async (req, res, next) => {
+    try {
+      res.json(await Team.update(new Team(req.body)))
+    } catch (err) {
+      console.error('Error patching team: ', err.message)
+      next(err)
+    }
+  })
+
 // .delete('/:id', team.delete)

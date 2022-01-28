@@ -8,18 +8,17 @@ const helper = require('./helper')
  */
 const member = function (member) {
   // TODO: Check for sanity...
-  this.memberId = member.memberId
+  this.memberId = member.memberId || null
   this.squadId = member.squadId
+  this.type = member.type
+  this.nickname = member.nickname
   this.name = member.name
   this.prefix = member.prefix
   this.surname = member.surname
-  this.description = member.description
   this.avatar = member.avatar
-  this.url = member.url
   this.githubHandle = member.githubHandle
-  this.nickname = member.nickname
   this.bio = member.bio
-  this.type = member.type
+  this.url = member.url
 }
 
 /**
@@ -29,7 +28,7 @@ const member = function (member) {
  */
 member.create = async function (member) {
   const rows = await db.query(
-    `INSERT INTO member SET name = ?, prefix = ?, surname = ?, description = ?, avatar = ?, url = ?, nickname = ?, githubHandle = ?, bio = ?, type = ?, squadId = ?`,
+    `INSERT INTO member SET squadId = ?, type = ?, nickname = ?, name = ?, prefix = ?, surname = ?, avatar = ?, githubHandle = ?, bio = ?, url = ?`,
     prepareForInsert(member)
   )
   member.memberId = rows.insertId
@@ -42,34 +41,27 @@ member.create = async function (member) {
 }
 
 /**
- *
- * @param {*} memberId
- * @param {*} member
- * @returns
+ * Update a member in the database, should return a usefull message if anything
+ * goes wrong.. but we still have to fix this..
+ * @param {*} member the member object to be updated, created with the Member constructor
+ * @returns an object with the updated member and some metadata
  */
-member.updateById = async function (memberId, member) {
+member.update = async function (member) {
   const rows = await db.query(
-    `UPDATE member SET name = ?, prefix = ?, surname = ?, description = ?, avatar = ?, url = ?, nickname = ?, githubHandle = ?, bio = ?, type = ?, squadId = ?, WHERE memberId = ?`,
-    [
-      member.name,
-      member.prefix,
-      member.surname,
-      member.description,
-      member.avatar,
-      member.url,
-      member.nickname,
-      member.githubHandle,
-      member.bio,
-      member.type,
-      member.squadId,
-      memberId,
-    ]
+    `UPDATE member SET squadId = ?, type = ?, nickname = ?, name = ?, prefix = ?, surname = ?, avatar = ?, githubHandle = ?, bio = ?, url = ? WHERE memberId = ?`,
+    prepareForUpdate(member)
   )
   return {
-    data: helper.emptyOrRows(rows),
-    meta: {},
+    data: [member],
+    meta: {
+      affectedRows: rows.affectedRows,
+      changedRows: rows.changedRows,
+    },
   }
 }
+
+member.remove = async function (memberId) {}
+member.removeAll = async function () {}
 
 /**
  * Find a corresponding member in the database using the passed memberId
@@ -102,8 +94,7 @@ member.getAll = async function (page = 1) {
   }
 }
 
-member.remove = async function (memberId) {}
-member.removeAll = async function () {}
+module.exports = member
 
 /**
  * Prepares a passed member object for insertion in the db, it's mostly an order
@@ -113,19 +104,26 @@ member.removeAll = async function () {}
  */
 function prepareForInsert(member) {
   return [
+    member.squadId,
+    member.type,
+    member.nickname,
     member.name,
     member.prefix,
     member.surname,
-    member.description,
     member.avatar,
-    member.url,
-    member.squadId,
-    member.nickname,
     member.githubHandle,
     member.bio,
-    member.type,
-    member.squadId,
+    member.url,
   ]
 }
 
-module.exports = member
+/**
+ * Prepares a passed member object for updating in the db, it's mostly an order
+ * thing as the update query expects an array with a certain order.
+ * @param {*} member the member object to be updated, created with the Member constructor
+ * @returns an array to be used in the update query
+ */
+function prepareForUpdate(member) {
+  // TODO: Check for sanity...
+  return [...prepareForInsert(member), member.memberId]
+}

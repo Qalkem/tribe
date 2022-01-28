@@ -6,7 +6,7 @@ module.exports = express
   .Router()
 
   // Add a new member
-  .post('/member', async (req, res, next) => {
+  .post('/', async (req, res, next) => {
     try {
       res.json(await Member.create(new Member(req.body)))
     } catch (err) {
@@ -16,7 +16,7 @@ module.exports = express
   })
 
   // List ALL members
-  .get('/member', async (req, res, next) => {
+  .get('/', async (req, res, next) => {
     try {
       res.json(await Member.getAll(req.query.page))
     } catch (err) {
@@ -24,8 +24,9 @@ module.exports = express
       next(err)
     }
   })
+
   // Find a member by id
-  .get('member/:id', async (req, res, next) => {
+  .get('/:id', async (req, res, next) => {
     try {
       res.json(await Member.findById(req.params.id))
     } catch (err) {
@@ -34,5 +35,14 @@ module.exports = express
     }
   })
 
-// .patch('/:id', member.update)
+  // Update a member
+  .patch('/', async (req, res, next) => {
+    try {
+      res.json(await Member.update(new Member(req.body)))
+    } catch (err) {
+      console.error('Error patching member: ', err.message)
+      next(err)
+    }
+  })
+
 // .delete('/:id', member.delete)

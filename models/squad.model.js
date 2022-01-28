@@ -36,10 +36,10 @@ Squad.create = async function (squad) {
 }
 
 /**
- *
- * @param {*} squadId
- * @param {*} squad
- * @returns
+ * Update a squad in the database, should return a usefull message if anything
+ * goes wrong.. but we still have to fix this..
+ * @param {*} squad the squad object to be updated, created with the Squad constructor
+ * @returns an object with the updated team and some metadata
  */
 Squad.update = async function (squad) {
   const rows = await db.query(
@@ -47,8 +47,11 @@ Squad.update = async function (squad) {
     prepareForUpdate(squad)
   )
   return {
-    data: helper.emptyOrRows(rows),
-    meta: {},
+    data: [squad],
+    meta: {
+      affectedRows: rows.affectedRows,
+      changedRows: rows.changedRows,
+    },
   }
 }
 

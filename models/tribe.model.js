@@ -41,14 +41,17 @@ Tribe.create = async function (tribe) {
  * @param {*} tribe the tribe object to be updated, created with the Tribe constructor
  * @returns
  */
-Tribe.updateById = async function (tribe) {
+Tribe.update = async function (tribe) {
   const rows = await db.query(
     'UPDATE tribe SET name = ?, cohort = ?, description = ?, avatar = ?, url = ? WHERE tribeId = ?',
     prepareForUpdate(tribe)
   )
   return {
-    data: helper.emptyOrRows(rows),
-    meta: {},
+    data: [tribe],
+    meta: {
+      affectedRows: rows.affectedRows,
+      changedRows: rows.changedRows,
+    },
   }
 }
 

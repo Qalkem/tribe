@@ -33,11 +33,12 @@ module.exports = express
     }
   })
 
+  // Update a squad
   .patch('/', async (req, res, next) => {
     try {
       res.json(await Squad.update(new Squad(req.body)))
     } catch (err) {
-      console.error('Error patching squad by id: ', err.message)
+      console.error('Error patching squad: ', err.message)
       next(err)
     }
   })

@@ -35,6 +35,29 @@ team.create = async function (team) {
 }
 
 /**
+ * Update a team in the database, should return a usefull message if anything
+ * goes wrong.. but we still have to fix this..
+ * @param {*} team the team object to be updated, created with the Team constructor
+ * @returns an object with the updated team and some metadata
+ */
+team.update = async function (team) {
+  const rows = await db.query(
+    'UPDATE team SET name = ?, description = ?, avatar = ?, url = ? WHERE teamId = ?',
+    prepareForUpdate(team)
+  )
+  return {
+    data: [team],
+    meta: {
+      affectedRows: rows.affectedRows,
+      changedRows: rows.changedRows,
+    },
+  }
+}
+
+team.remove = async function (teamId) {}
+team.removeAll = async function () {}
+
+/**
  * Find a corresponding team in the database using the passed teamId
  * @param {*} teamId a teamId to lookup in the database
  * @returns an object with the found team
@@ -58,32 +81,14 @@ team.getAll = async function (page = 1) {
     helper.getOffset(page, process.env.LIST_PER_PAGE),
     process.env.LIST_PER_PAGE,
   ])
-
+  console.log(rows)
   return {
     data: helper.emptyOrRows(rows),
     meta: { page },
   }
 }
 
-/**
- *
- * @param {*} teamId
- * @param {*} team
- * @returns
- */
-team.updateById = async function (teamId, team) {
-  const rows = await db.query(
-    'UPDATE team SET name = ?, description = ?, avatar = ?, url = ? WHERE teamId = ?',
-    [team.name, team.description, team.avatar, team.url, teamId]
-  )
-  return {
-    data: helper.emptyOrRows(rows),
-    meta: {},
-  }
-}
-
-team.remove = async function (teamId) {}
-team.removeAll = async function () {}
+module.exports = team
 
 /**
  * Prepares a passed team object for insertion in the db, it's mostly an order
@@ -95,4 +100,13 @@ function prepareForInsert(team) {
   return [team.name, team.description, team.avatar, team.url]
 }
 
-module.exports = team
+/**
+ * Prepares a passed team object for updating in the db, it's mostly an order
+ * thing as the update query expects an array with a certain order.
+ * @param {*} team the team object to be updated, created with the Team constructor
+ * @returns an array to be used in the update query
+ */
+function prepareForUpdate(team) {
+  // TODO: Check for sanity...
+  return [...prepareForInsert(team), team.teamId]
+}

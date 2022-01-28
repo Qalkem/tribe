@@ -35,7 +35,7 @@ module.exports = express
   // Update a tribe
   .patch('/', async (req, res, next) => {
     try {
-      res.json(await Tribe.create(new Tribe(req.body)))
+      res.json(await Tribe.update(new Tribe(req.body)))
     } catch (err) {
       console.error('Error patching tribe: ', err.message)
     }
