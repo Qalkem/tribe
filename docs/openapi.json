@@ -646,20 +646,281 @@
         "operationId": "post-squad",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "The added squad with the new insertId",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "uniqueItems": true,
+                      "minItems": 1,
+                      "items": {
+                        "required": [
+                          "squadId",
+                          "tribeId",
+                          "name",
+                          "description",
+                          "avatar",
+                          "url"
+                        ],
+                        "properties": {
+                          "squadId": {
+                            "type": "number"
+                          },
+                          "tribeId": {
+                            "type": "number"
+                          },
+                          "name": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "description": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "avatar": {
+                            "type": "string"
+                          },
+                          "url": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "insertId": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "insertId"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "x-examples": {
+                    "example-1": {
+                      "data": [
+                        {
+                          "squadId": 2,
+                          "tribeId": 2,
+                          "name": "Squad2",
+                          "description": "Dit is ook een supervette squad",
+                          "avatar": "",
+                          "url": ""
+                        }
+                      ],
+                      "meta": {
+                        "insertId": 2
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         },
-        "description": "Adds a squad"
+        "description": "Adds a squad",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "description": "",
+                "type": "object",
+                "x-examples": {
+                  "example-1": {
+                    "squadId": 1,
+                    "tribeId": 2,
+                    "name": "Squad2",
+                    "description": "Dit is ook een supervette squad",
+                    "avatar": "",
+                    "url": ""
+                  }
+                },
+                "properties": {
+                  "tribeId": {
+                    "type": "number"
+                  },
+                  "name": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "description": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "avatar": {
+                    "type": "string"
+                  },
+                  "url": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "tribeId",
+                  "name",
+                  "description",
+                  "avatar",
+                  "url"
+                ]
+              }
+            }
+          },
+          "description": "The squad to be added"
+        }
       },
       "patch": {
         "summary": "",
         "operationId": "patch-squad",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "The patched squad and some meta info on the affected and changed rows. If affected rows is 0 then there is no corresponding squad. If changed rows is 0 then there were no changes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "uniqueItems": true,
+                      "minItems": 1,
+                      "items": {
+                        "required": [
+                          "squadId",
+                          "tribeId",
+                          "name",
+                          "description",
+                          "avatar",
+                          "url"
+                        ],
+                        "properties": {
+                          "squadId": {
+                            "type": "number"
+                          },
+                          "tribeId": {
+                            "type": "number"
+                          },
+                          "name": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "description": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "avatar": {
+                            "type": "string"
+                          },
+                          "url": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "affectedRows": {
+                          "type": "number"
+                        },
+                        "changedRows": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "affectedRows",
+                        "changedRows"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "x-examples": {
+                    "example-1": {
+                      "data": [
+                        {
+                          "squadId": 2,
+                          "tribeId": 2,
+                          "name": "w00t",
+                          "description": "jaaa een nieuwe beschrijving",
+                          "avatar": "",
+                          "url": ""
+                        }
+                      ],
+                      "meta": {
+                        "affectedRows": 1,
+                        "changedRows": 1
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         },
-        "description": "Patches a squad"
+        "description": "Patches a squad",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "description": "",
+                "type": "object",
+                "properties": {
+                  "squadId": {
+                    "type": "number"
+                  },
+                  "tribeId": {
+                    "type": "number"
+                  },
+                  "name": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "description": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "avatar": {
+                    "type": "string"
+                  },
+                  "url": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "squadId",
+                  "tribeId",
+                  "name",
+                  "description",
+                  "avatar",
+                  "url"
+                ],
+                "x-examples": {
+                  "example-1": {
+                    "squadId": 2,
+                    "tribeId": 2,
+                    "name": "w00t",
+                    "description": "jaaa een nieuwe beschrijving",
+                    "avatar": "",
+                    "url": ""
+                  }
+                }
+              }
+            }
+          },
+          "description": "The squad to be patched, use the correct squadId"
+        }
       }
     },
     "/member": {
@@ -667,15 +928,202 @@
         "summary": "Your GET endpoint",
         "tags": [],
         "responses": {},
-        "operationId": "get-member"
+        "operationId": "get-member",
+        "description": "Gets a list of all members using pagination"
       },
       "post": {
         "summary": "",
         "operationId": "post-member",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "The added member with the new insertId",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "uniqueItems": true,
+                      "minItems": 1,
+                      "items": {
+                        "required": [
+                          "memberId",
+                          "squadId",
+                          "type",
+                          "nickname",
+                          "name",
+                          "prefix",
+                          "surname",
+                          "avatar",
+                          "githubHandle",
+                          "bio",
+                          "url"
+                        ],
+                        "properties": {
+                          "memberId": {
+                            "type": "number"
+                          },
+                          "squadId": {
+                            "type": "number"
+                          },
+                          "type": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "nickname": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "name": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "prefix": {
+                            "type": "string"
+                          },
+                          "surname": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "avatar": {
+                            "type": "string"
+                          },
+                          "githubHandle": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "bio": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "url": {
+                            "type": "string",
+                            "minLength": 1
+                          }
+                        }
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "insertId": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "insertId"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "x-examples": {
+                    "example-1": {
+                      "data": [
+                        {
+                          "memberId": 3,
+                          "squadId": 1,
+                          "type": "student",
+                          "nickname": "flappie",
+                          "name": "Justus",
+                          "prefix": "",
+                          "surname": "Sturkenboom",
+                          "avatar": "",
+                          "githubHandle": "ju5tu5",
+                          "bio": "I am a banana!",
+                          "url": "https://ju5tu5.nl"
+                        }
+                      ],
+                      "meta": {
+                        "insertId": 3
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
+        },
+        "description": "Adds a member",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "description": "",
+                "type": "object",
+                "properties": {
+                  "squadId": {
+                    "type": "number"
+                  },
+                  "type": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "nickname": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "name": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "prefix": {
+                    "type": "string"
+                  },
+                  "surname": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "avatar": {
+                    "type": "string"
+                  },
+                  "githubHandle": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "bio": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "url": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "squadId",
+                  "type",
+                  "nickname",
+                  "name",
+                  "prefix",
+                  "surname",
+                  "avatar",
+                  "githubHandle",
+                  "bio",
+                  "url"
+                ],
+                "x-examples": {
+                  "example-1": {
+                    "squadId": 1,
+                    "type": "student",
+                    "nickname": "flappie",
+                    "name": "Justus",
+                    "prefix": "",
+                    "surname": "Sturkenboom",
+                    "avatar": "",
+                    "githubHandle": "ju5tu5",
+                    "bio": "I am a banana!",
+                    "url": "https://ju5tu5.nl"
+                  }
+                }
+              }
+            }
+          },
+          "description": "The member to be added"
         }
       },
       "patch": {
@@ -683,8 +1131,206 @@
         "operationId": "patch-member",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "The patched member and some meta info on the affected and changed rows. If affected rows is 0 then there is no corresponding member. If changed rows is 0 then there were no changes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "uniqueItems": true,
+                      "minItems": 1,
+                      "items": {
+                        "required": [
+                          "memberId",
+                          "squadId",
+                          "type",
+                          "nickname",
+                          "name",
+                          "prefix",
+                          "surname",
+                          "avatar",
+                          "githubHandle",
+                          "bio",
+                          "url"
+                        ],
+                        "properties": {
+                          "memberId": {
+                            "type": "number"
+                          },
+                          "squadId": {
+                            "type": "number"
+                          },
+                          "type": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "nickname": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "name": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "prefix": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "surname": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "avatar": {
+                            "type": "string"
+                          },
+                          "githubHandle": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "bio": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "url": {
+                            "type": "string",
+                            "minLength": 1
+                          }
+                        }
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "affectedRows": {
+                          "type": "number"
+                        },
+                        "changedRows": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "affectedRows",
+                        "changedRows"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "x-examples": {
+                    "example-1": {
+                      "data": [
+                        {
+                          "memberId": 1,
+                          "squadId": 1,
+                          "type": "student",
+                          "nickname": "gozer",
+                          "name": "je",
+                          "prefix": "weet",
+                          "surname": "zelf",
+                          "avatar": "",
+                          "githubHandle": "dude",
+                          "bio": "I am a banana!",
+                          "url": "https://gozer.nl"
+                        }
+                      ],
+                      "meta": {
+                        "affectedRows": 1,
+                        "changedRows": 1
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
+        },
+        "description": "Patches a member",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "description": "",
+                "type": "object",
+                "properties": {
+                  "memberId": {
+                    "type": "number"
+                  },
+                  "squadId": {
+                    "type": "number"
+                  },
+                  "type": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "nickname": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "name": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "prefix": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "surname": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "avatar": {
+                    "type": "string"
+                  },
+                  "githubHandle": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "bio": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "url": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "memberId",
+                  "squadId",
+                  "type",
+                  "nickname",
+                  "name",
+                  "prefix",
+                  "surname",
+                  "avatar",
+                  "githubHandle",
+                  "bio",
+                  "url"
+                ],
+                "x-examples": {
+                  "example-1": {
+                    "memberId": 1,
+                    "squadId": 1,
+                    "type": "student",
+                    "nickname": "gozer",
+                    "name": "je",
+                    "prefix": "weet",
+                    "surname": "zelf",
+                    "avatar": "",
+                    "githubHandle": "dude",
+                    "bio": "I am a banana!",
+                    "url": "https://gozer.nl"
+                  }
+                }
+              }
+            }
+          },
+          "description": "The member to be patched, use the correct memberId"
         }
       }
     },
@@ -693,15 +1339,132 @@
         "summary": "Your GET endpoint",
         "tags": [],
         "responses": {},
-        "operationId": "get-team"
+        "operationId": "get-team",
+        "description": "Gets a list of all teams using pagination"
       },
       "post": {
         "summary": "",
         "operationId": "post-team",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "The added team with the new insertId",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "uniqueItems": true,
+                      "minItems": 1,
+                      "items": {
+                        "required": [
+                          "teamId",
+                          "name",
+                          "description",
+                          "avatar",
+                          "url"
+                        ],
+                        "properties": {
+                          "teamId": {
+                            "type": "number"
+                          },
+                          "name": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "description": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "avatar": {
+                            "type": "string"
+                          },
+                          "url": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "insertId": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "insertId"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "x-examples": {
+                    "example-1": {
+                      "data": [
+                        {
+                          "teamId": 3,
+                          "name": "The A-Team",
+                          "description": "In 1972, a crack commando unit was sent to prison by a military court for a crime they didn't commit. These men promptly escaped from a maximum security stockade to the Los Angeles underground. Today, still wanted by the government they survive as soldiers of fortune. If you have a problem, if no one else can help, and if you can find them....maybe you can hire The A-Team.",
+                          "avatar": "",
+                          "url": ""
+                        }
+                      ],
+                      "meta": {
+                        "insertId": 3
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
+        },
+        "description": "Adds a team",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "description": "",
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "description": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "avatar": {
+                    "type": "string"
+                  },
+                  "url": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name",
+                  "description",
+                  "avatar",
+                  "url"
+                ],
+                "x-examples": {
+                  "example-1": {
+                    "name": "The A-Team",
+                    "description": "In 1972, a crack commando unit was sent to prison by a military court for a crime they didn't commit. These men promptly escaped from a maximum security stockade to the Los Angeles underground. Today, still wanted by the government they survive as soldiers of fortune. If you have a problem, if no one else can help, and if you can find them....maybe you can hire The A-Team.",
+                    "avatar": "",
+                    "url": ""
+                  }
+                }
+              }
+            }
+          },
+          "description": "The team to be added"
         }
       },
       "patch": {
@@ -709,8 +1472,134 @@
         "operationId": "patch-team",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "The patched team and some meta info on the affected and changed rows. If affected rows is 0 then there is no corresponding team. If changed rows is 0 then there were no changes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "uniqueItems": true,
+                      "minItems": 1,
+                      "items": {
+                        "required": [
+                          "teamId",
+                          "name",
+                          "description",
+                          "avatar",
+                          "url"
+                        ],
+                        "properties": {
+                          "teamId": {
+                            "type": "number"
+                          },
+                          "name": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "description": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "avatar": {
+                            "type": "string"
+                          },
+                          "url": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "affectedRows": {
+                          "type": "number"
+                        },
+                        "changedRows": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "affectedRows",
+                        "changedRows"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "x-examples": {
+                    "example-1": {
+                      "data": [
+                        {
+                          "teamId": 3,
+                          "name": "The C-Team",
+                          "description": "In 4072, a crack commando unit was sent to prison by a military court for a crime they didn't commit. These men promptly escaped from a maximum security stockade to the Los Angeles underground. In the future, if you have a problem, if no one else can help, and if you can find them....maybe you can hire The C-Team.",
+                          "avatar": "",
+                          "url": ""
+                        }
+                      ],
+                      "meta": {
+                        "affectedRows": 1,
+                        "changedRows": 1
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
+        },
+        "description": "Patches a team",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "description": "",
+                "type": "object",
+                "properties": {
+                  "teamId": {
+                    "type": "number"
+                  },
+                  "name": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "description": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "avatar": {
+                    "type": "string"
+                  },
+                  "url": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "teamId",
+                  "name",
+                  "description",
+                  "avatar",
+                  "url"
+                ],
+                "x-examples": {
+                  "example-1": {
+                    "teamId": 3,
+                    "name": "The C-Team",
+                    "description": "In 4072, a crack commando unit was sent to prison by a military court for a crime they didn't commit. These men promptly escaped from a maximum security stockade to the Los Angeles underground. In the future, if you have a problem, if no one else can help, and if you can find them....maybe you can hire The C-Team.",
+                    "avatar": "",
+                    "url": ""
+                  }
+                }
+              }
+            }
+          },
+          "description": "The team to be patched, use the correct teamId"
         }
       }
     },
