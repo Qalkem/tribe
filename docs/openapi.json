@@ -1859,5 +1859,6 @@
   },
   "components": {
     "securitySchemes": {}
-  }
+  },
+  "x-logo": null
 }
