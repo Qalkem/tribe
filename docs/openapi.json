@@ -9,6 +9,10 @@
       "url": "https://fdnd.nl",
       "email": "info-fdnd@hva.nl"
     },
+    "x-logo": {
+      "url": "https://avatars.githubusercontent.com/u/50839234?s=400&u=ad7e49da9dcf224f4780d797b93aa86640a27a9f&v=4",
+      "altText": "FDND Logo"
+    },
     "license": {
       "name": "GNU GPL v3.0",
       "url": "https://www.gnu.org/licenses/gpl-3.0.en.html"
@@ -20,10 +24,6 @@
       "description": "Production server"
     }
   ],
-  "x-logo": {
-    "url": "https://avatars.githubusercontent.com/u/50839234?s=400&u=ad7e49da9dcf224f4780d797b93aa86640a27a9f&v=4",
-    "altText": "FDND Logo"
-  },
   "tags": [
     {
       "name": "member"
