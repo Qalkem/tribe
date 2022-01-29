@@ -138,6 +138,26 @@
                       }
                     }
                   }
+                },
+                "examples": {
+                  "example-1": {
+                    "value": {
+                      "data": [
+                        {
+                          "tribeId": 0,
+                          "name": "string",
+                          "cohort": "string",
+                          "description": "string",
+                          "avatar": "string",
+                          "url": "string"
+                        }
+                      ],
+                      "meta": {
+                        "page": 0,
+                        "limit": "string"
+                      }
+                    }
+                  }
                 }
               }
             }
