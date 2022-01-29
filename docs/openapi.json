@@ -2,7 +2,7 @@
   "openapi": "3.0.3",
   "info": {
     "title": "FDND Tribe API",
-    "description": "It's an API that contains open info on all tribe members. Member information is handed over with consent and will be shared openly on the internet.",
+    "description": "It's an API that contains open info on all tribe members. Member information is handed over with consent and will be shared openly on the internet.\n\n# Introduction\n\nThis API is provided for students at FDND and CMD to be used in any way that they see fit. It uses no authentication and will be reset to standard data if needed. Note that because of this all information inserted is volatile.. If you want something to persist, contact your teacher to add data to the standard.\n\n# OpenAPI Specification\n\nThis API is documented in OpenAPI format by the [FDND](https://fdnd.nl) team. It was extended to show features of the [ReDoc](https://github.com/Redocly/redoc) documentation.",
     "version": "0.0.1",
     "contact": {
       "name": "Frontend Design & Development (fdnd) @ Amsterdam University of Applied Sciences (AUAS)",
