@@ -1,6 +1,5 @@
 require('dotenv').config()
 const express = require('express')
-const cors = require('cors')
 
 const indexRoute = require('./routes/index')
 const tribeRoute = require('./routes/tribe')
@@ -11,7 +10,6 @@ const listRoute = require('./routes/list')
 const errorRoute = require('./routes/error')
 
 module.exports = express()
-  .use(cors)
   .use(express.json())
   .use(express.urlencoded({ extended: true }))
 
