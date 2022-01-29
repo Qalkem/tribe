@@ -3,7 +3,16 @@
   "info": {
     "title": "FDND Tribe API",
     "description": "It's an API that contains open info on all tribe members. Member information is handed over with consent and will be shared openly on the internet.",
-    "version": "0.0.1"
+    "version": "0.0.1",
+    "contact": {
+      "name": "Frontend Design & Development (fdnd) @ Amsterdam University of Applied Sciences (AUAS)",
+      "url": "https://fdnd.nl",
+      "email": "info-fdnd@hva.nl"
+    },
+    "license": {
+      "name": "GNU GPL v3.0",
+      "url": "https://www.gnu.org/licenses/gpl-3.0.en.html"
+    }
   },
   "servers": [
     {
@@ -14,37 +23,889 @@
   "paths": {
     "/tribe": {
       "get": {
-        "description": "Returns all tribes from the system",
+        "description": "Gets a list of all tribes using pagination",
         "responses": {
           "200": {
             "description": "A list of tribes",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array"
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "uniqueItems": true,
+                      "minItems": 1,
+                      "items": {
+                        "required": [
+                          "tribeId",
+                          "name",
+                          "cohort",
+                          "description",
+                          "avatar",
+                          "url"
+                        ],
+                        "properties": {
+                          "tribeId": {
+                            "type": "number"
+                          },
+                          "name": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "cohort": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "description": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "avatar": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "url": {
+                            "type": "string",
+                            "minLength": 1
+                          }
+                        }
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "page": {
+                          "type": "number"
+                        },
+                        "limit": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      },
+                      "required": [
+                        "page",
+                        "limit"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "x-examples": {
+                    "example-1": {
+                      "data": [
+                        {
+                          "tribeId": 7,
+                          "name": "FDND Founders",
+                          "cohort": "2021",
+                          "description": "First tribe @FDND",
+                          "avatar": "https://avatars.githubusercontent.com/u/62932179?s=200&v=4",
+                          "url": "https://fdnd.nl/"
+                        },
+                        {
+                          "tribeId": 8,
+                          "name": "Minor Web Tribe 2022",
+                          "cohort": "2122",
+                          "description": "This is the tribe for the minor web design & development 2122",
+                          "avatar": "https://avatars.githubusercontent.com/u/36165843?s=200&v=4",
+                          "url": "https://github.com/cmda-minor-web"
+                        }
+                      ],
+                      "meta": {
+                        "page": 1,
+                        "limit": "50"
+                      }
+                    }
+                  }
                 }
               }
             }
+          },
+          "": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "uniqueItems": true,
+                      "minItems": 1,
+                      "items": {
+                        "required": [
+                          "tribeId",
+                          "name",
+                          "cohort",
+                          "description",
+                          "avatar",
+                          "url"
+                        ],
+                        "properties": {
+                          "tribeId": {
+                            "type": "number"
+                          },
+                          "name": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "cohort": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "description": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "avatar": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "url": {
+                            "type": "string",
+                            "minLength": 1
+                          }
+                        }
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "page": {
+                          "type": "number"
+                        },
+                        "limit": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "page",
+                        "limit"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "x-examples": {
+                    "example-1": {
+                      "data": [
+                        {
+                          "tribeId": 7,
+                          "name": "FDND Founders",
+                          "cohort": "2021",
+                          "description": "First tribe @FDND",
+                          "avatar": "https://avatars.githubusercontent.com/u/62932179?s=200&v=4",
+                          "url": "https://fdnd.nl/"
+                        },
+                        {
+                          "tribeId": 8,
+                          "name": "Minor Web Tribe 2022",
+                          "cohort": "2122",
+                          "description": "This is the tribe for the minor web design & development 2122",
+                          "avatar": "https://avatars.githubusercontent.com/u/36165843?s=200&v=4",
+                          "url": "https://github.com/cmda-minor-web"
+                        }
+                      ],
+                      "meta": {
+                        "page": 1,
+                        "limit": 50
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": "An object containing data[] which holds a list of all tribes and meta{} which holds meta information on pagination"
+          }
+        },
+        "operationId": "",
+        "summary": ""
+      },
+      "parameters": [],
+      "post": {
+        "summary": "",
+        "operationId": "post-tribe",
+        "responses": {
+          "200": {
+            "description": "The added tribe with the new insertId",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "uniqueItems": true,
+                      "minItems": 1,
+                      "items": {
+                        "required": [
+                          "tribeId",
+                          "name",
+                          "cohort",
+                          "description",
+                          "avatar",
+                          "url"
+                        ],
+                        "properties": {
+                          "tribeId": {
+                            "type": "number"
+                          },
+                          "name": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "cohort": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "description": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "avatar": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "url": {
+                            "type": "string",
+                            "minLength": 1
+                          }
+                        }
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "insertId": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "insertId"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "x-examples": {
+                    "example-1": {
+                      "data": [
+                        {
+                          "tribeId": 2,
+                          "name": "Nieuwe tribe",
+                          "cohort": "2122",
+                          "description": "API test door Justus",
+                          "avatar": "https://avatars.githubusercontent.com/u/97515539?s=200&v=4",
+                          "url": "https://fdnd.nl"
+                        }
+                      ],
+                      "meta": {
+                        "insertId": 2
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Adds a tribe",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "description": "",
+                "type": "object",
+                "properties": {
+                  "tribeId": {
+                    "type": "number"
+                  },
+                  "name": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "cohort": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "description": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "avatar": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "url": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "tribeId",
+                  "name",
+                  "cohort",
+                  "description",
+                  "avatar",
+                  "url"
+                ],
+                "x-examples": {
+                  "example-1": {
+                    "tribeId": 0,
+                    "name": "Nieuwe tribe",
+                    "cohort": "2122",
+                    "description": "API test door Justus",
+                    "avatar": "https://avatars.githubusercontent.com/u/97515539?s=200&v=4",
+                    "url": "https://fdnd.nl"
+                  }
+                }
+              },
+              "examples": {}
+            }
+          },
+          "description": "The tribe to be added"
+        }
+      },
+      "patch": {
+        "summary": "",
+        "operationId": "patch-tribe",
+        "responses": {
+          "200": {
+            "description": "The patched tribe and some meta info on the affected and changed rows. If affected rows is 0 then there is no corresponding tribe. If changed rows is 0 then there were no changes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "uniqueItems": true,
+                      "minItems": 1,
+                      "items": {
+                        "required": [
+                          "tribeId",
+                          "name",
+                          "cohort",
+                          "description",
+                          "avatar",
+                          "url"
+                        ],
+                        "properties": {
+                          "tribeId": {
+                            "type": "number"
+                          },
+                          "name": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "cohort": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "description": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "avatar": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "url": {
+                            "type": "string",
+                            "minLength": 1
+                          }
+                        }
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "affectedRows": {
+                          "type": "number"
+                        },
+                        "changedRows": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "affectedRows",
+                        "changedRows"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "x-examples": {
+                    "example-1": {
+                      "data": [
+                        {
+                          "tribeId": 1,
+                          "name": "Nieuwe tribe",
+                          "cohort": "2122",
+                          "description": "API test door Justus again",
+                          "avatar": "https://avatars.githubusercontent.com/u/97515539?s=200&v=4",
+                          "url": "https://fdnd.nl"
+                        }
+                      ],
+                      "meta": {
+                        "affectedRows": 1,
+                        "changedRows": 1
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Patches a tribe",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "description": "",
+                "type": "object",
+                "properties": {
+                  "tribeId": {
+                    "type": "number"
+                  },
+                  "name": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "cohort": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "description": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "avatar": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "url": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "tribeId",
+                  "name",
+                  "cohort",
+                  "description",
+                  "avatar",
+                  "url"
+                ],
+                "x-examples": {
+                  "example-1": {
+                    "tribeId": 0,
+                    "name": "Nieuwe tribe",
+                    "cohort": "2122",
+                    "description": "API test door Justus",
+                    "avatar": "https://avatars.githubusercontent.com/u/97515539?s=200&v=4",
+                    "url": "https://fdnd.nl"
+                  }
+                }
+              }
+            }
+          },
+          "description": "The tribe to be patched, use the correct tribeId"
+        }
+      }
+    },
+    "/tribe/{id}": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "uniqueItems": true,
+                      "minItems": 1,
+                      "items": {
+                        "required": [
+                          "tribeId",
+                          "name",
+                          "cohort",
+                          "description",
+                          "avatar",
+                          "url"
+                        ],
+                        "properties": {
+                          "tribeId": {
+                            "type": "number"
+                          },
+                          "name": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "cohort": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "description": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "avatar": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "url": {
+                            "type": "string",
+                            "minLength": 1
+                          }
+                        }
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "tribeId": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      },
+                      "required": [
+                        "tribeId"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "x-examples": {
+                    "example-1": {
+                      "data": [
+                        {
+                          "tribeId": 7,
+                          "name": "FDND Founders",
+                          "cohort": "2021",
+                          "description": "First tribe @FDND",
+                          "avatar": "https://avatars.githubusercontent.com/u/62932179?s=200&v=4",
+                          "url": "https://fdnd.nl/"
+                        }
+                      ],
+                      "meta": {
+                        "tribeId": "7"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-tribe-:id",
+        "description": "Gets a specific tribe identified by {id}"
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "integer"
+          },
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "a tribeId used to get a specific tribe"
+        }
+      ]
+    },
+    "/squad": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {},
+        "operationId": "get-squad",
+        "description": "Gets a list of all squads using pagination"
+      },
+      "post": {
+        "summary": "",
+        "operationId": "post-squad",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "description": "Adds a squad"
+      },
+      "patch": {
+        "summary": "",
+        "operationId": "patch-squad",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "description": "Patches a squad"
+      }
+    },
+    "/member": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {},
+        "operationId": "get-member"
+      },
+      "post": {
+        "summary": "",
+        "operationId": "post-member",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "patch": {
+        "summary": "",
+        "operationId": "patch-member",
+        "responses": {
+          "200": {
+            "description": "OK"
           }
         }
       }
     },
-    "/tribe/:id": {
+    "/team": {
       "get": {
-        "description": "Returns a single tribe identiefied by :id from the system",
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {},
+        "operationId": "get-team"
+      },
+      "post": {
+        "summary": "",
+        "operationId": "post-team",
         "responses": {
           "200": {
-            "description": "A tribes",
+            "description": "OK"
+          }
+        }
+      },
+      "patch": {
+        "summary": "",
+        "operationId": "patch-team",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/list": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "uniqueItems": true,
+                      "minItems": 1,
+                      "items": {
+                        "required": [
+                          "memberId",
+                          "memberType",
+                          "memberNickname",
+                          "memberName",
+                          "memberPrefix",
+                          "memberSurname",
+                          "memberAvatar",
+                          "memberGithubHandle",
+                          "memberBio",
+                          "memberUrl",
+                          "squadId",
+                          "squadName",
+                          "squadDesription",
+                          "squadAvatar",
+                          "squadUrl",
+                          "tribeId",
+                          "tribeName",
+                          "tribeCohort",
+                          "tribeDescription",
+                          "tribeAvatar",
+                          "tribeUrl"
+                        ],
+                        "properties": {
+                          "memberId": {
+                            "type": "number"
+                          },
+                          "memberType": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "memberNickname": {
+                            "type": "string"
+                          },
+                          "memberName": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "memberPrefix": {
+                            "type": "string"
+                          },
+                          "memberSurname": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "memberAvatar": {
+                            "type": "string"
+                          },
+                          "memberGithubHandle": {
+                            "type": "string"
+                          },
+                          "memberBio": {
+                            "type": "string"
+                          },
+                          "memberUrl": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "squadId": {
+                            "type": "number"
+                          },
+                          "squadName": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "squadDesription": {
+                            "type": "string"
+                          },
+                          "squadAvatar": {
+                            "type": "string"
+                          },
+                          "squadUrl": {
+                            "type": "string"
+                          },
+                          "tribeId": {
+                            "type": "number"
+                          },
+                          "tribeName": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "tribeCohort": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "tribeDescription": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "tribeAvatar": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "tribeUrl": {
+                            "type": "string",
+                            "minLength": 1
+                          }
+                        }
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {},
+                      "required": []
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "x-examples": {
+                    "example-1": {
+                      "data": [
+                        {
+                          "memberId": 6,
+                          "memberType": "student",
+                          "memberNickname": "",
+                          "memberName": "Justin",
+                          "memberPrefix": "",
+                          "memberSurname": "Lung",
+                          "memberAvatar": "",
+                          "memberGithubHandle": "",
+                          "memberBio": "",
+                          "memberUrl": "\r",
+                          "squadId": 1,
+                          "squadName": "Squad 1",
+                          "squadDesription": "",
+                          "squadAvatar": "",
+                          "squadUrl": "",
+                          "tribeId": 7,
+                          "tribeName": "FDND Founders",
+                          "tribeCohort": "2021",
+                          "tribeDescription": "First tribe @FDND",
+                          "tribeAvatar": "https://avatars.githubusercontent.com/u/62932179?s=200&v=4",
+                          "tribeUrl": "https://fdnd.nl/"
+                        },
+                        {
+                          "memberId": 7,
+                          "memberType": "student",
+                          "memberNickname": "",
+                          "memberName": "Daan",
+                          "memberPrefix": "",
+                          "memberSurname": "Korver",
+                          "memberAvatar": "",
+                          "memberGithubHandle": "",
+                          "memberBio": "",
+                          "memberUrl": "",
+                          "squadId": 1,
+                          "squadName": "Squad 1",
+                          "squadDesription": "",
+                          "squadAvatar": "",
+                          "squadUrl": "",
+                          "tribeId": 7,
+                          "tribeName": "FDND Founders",
+                          "tribeCohort": "2021",
+                          "tribeDescription": "First tribe @FDND",
+                          "tribeAvatar": "https://avatars.githubusercontent.com/u/62932179?s=200&v=4",
+                          "tribeUrl": "https://fdnd.nl/"
+                        }
+                      ],
+                      "meta": {}
+                    }
+                  }
                 }
               }
             }
           }
-        }
+        },
+        "operationId": "get-list",
+        "description": "Gets a fully populated list of members containing info on their squad and their tribe"
       }
     }
+  },
+  "components": {
+    "securitySchemes": {}
   }
 }

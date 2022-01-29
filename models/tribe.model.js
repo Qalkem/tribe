@@ -87,7 +87,7 @@ Tribe.getAll = async function (page = 1) {
     data: helper.emptyOrRows(rows),
     meta: {
       page: page,
-      limit: process.env.LIST_PER_PAGE,
+      limit: parseInt(process.env.LIST_PER_PAGE),
     },
   }
 }

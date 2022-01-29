@@ -13,7 +13,7 @@ module.exports = express()
   .use(express.json())
   .use(express.urlencoded({ extended: true }))
 
-  .use('/', indexRoute) // expose the openapi document in /docs/openapi.json (once it is finished)
+  .use('/', indexRoute)
   .use('/v1/tribe', tribeRoute)
   .use('/v1/squad', squadRoute)
   .use('/v1/member', memberRoute)
