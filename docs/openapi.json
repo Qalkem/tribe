@@ -9,10 +9,6 @@
       "url": "https://fdnd.nl",
       "email": "info-fdnd@hva.nl"
     },
-    "x-logo": {
-      "url": "https://avatars.githubusercontent.com/u/97515539?s=200&v=4",
-      "altText": "FDND Logo"
-    },
     "license": {
       "name": "GNU GPL v3.0",
       "url": "https://www.gnu.org/licenses/gpl-3.0.en.html"
@@ -42,7 +38,14 @@
                       "uniqueItems": true,
                       "minItems": 1,
                       "items": {
-                        "required": ["tribeId", "name", "cohort", "description", "avatar", "url"],
+                        "required": [
+                          "tribeId",
+                          "name",
+                          "cohort",
+                          "description",
+                          "avatar",
+                          "url"
+                        ],
                         "properties": {
                           "tribeId": {
                             "type": "number"
@@ -81,10 +84,16 @@
                           "minLength": 1
                         }
                       },
-                      "required": ["page", "limit"]
+                      "required": [
+                        "page",
+                        "limit"
+                      ]
                     }
                   },
-                  "required": ["data", "meta"],
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
                   "x-examples": {
                     "example-1": {
                       "data": [
@@ -127,7 +136,14 @@
                       "uniqueItems": true,
                       "minItems": 1,
                       "items": {
-                        "required": ["tribeId", "name", "cohort", "description", "avatar", "url"],
+                        "required": [
+                          "tribeId",
+                          "name",
+                          "cohort",
+                          "description",
+                          "avatar",
+                          "url"
+                        ],
                         "properties": {
                           "tribeId": {
                             "type": "number"
@@ -165,10 +181,16 @@
                           "type": "number"
                         }
                       },
-                      "required": ["page", "limit"]
+                      "required": [
+                        "page",
+                        "limit"
+                      ]
                     }
                   },
-                  "required": ["data", "meta"],
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
                   "x-examples": {
                     "example-1": {
                       "data": [
@@ -202,7 +224,7 @@
           }
         },
         "operationId": "",
-        "summary": ""
+        "summary": "Tribe"
       },
       "parameters": [],
       "post": {
@@ -222,7 +244,14 @@
                       "uniqueItems": true,
                       "minItems": 1,
                       "items": {
-                        "required": ["tribeId", "name", "cohort", "description", "avatar", "url"],
+                        "required": [
+                          "tribeId",
+                          "name",
+                          "cohort",
+                          "description",
+                          "avatar",
+                          "url"
+                        ],
                         "properties": {
                           "tribeId": {
                             "type": "number"
@@ -257,10 +286,15 @@
                           "type": "number"
                         }
                       },
-                      "required": ["insertId"]
+                      "required": [
+                        "insertId"
+                      ]
                     }
                   },
-                  "required": ["data", "meta"],
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
                   "x-examples": {
                     "example-1": {
                       "data": [
@@ -315,7 +349,14 @@
                     "minLength": 1
                   }
                 },
-                "required": ["tribeId", "name", "cohort", "description", "avatar", "url"],
+                "required": [
+                  "tribeId",
+                  "name",
+                  "cohort",
+                  "description",
+                  "avatar",
+                  "url"
+                ],
                 "x-examples": {
                   "example-1": {
                     "tribeId": 0,
@@ -350,7 +391,14 @@
                       "uniqueItems": true,
                       "minItems": 1,
                       "items": {
-                        "required": ["tribeId", "name", "cohort", "description", "avatar", "url"],
+                        "required": [
+                          "tribeId",
+                          "name",
+                          "cohort",
+                          "description",
+                          "avatar",
+                          "url"
+                        ],
                         "properties": {
                           "tribeId": {
                             "type": "number"
@@ -388,10 +436,16 @@
                           "type": "number"
                         }
                       },
-                      "required": ["affectedRows", "changedRows"]
+                      "required": [
+                        "affectedRows",
+                        "changedRows"
+                      ]
                     }
                   },
-                  "required": ["data", "meta"],
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
                   "x-examples": {
                     "example-1": {
                       "data": [
@@ -447,7 +501,14 @@
                     "minLength": 1
                   }
                 },
-                "required": ["tribeId", "name", "cohort", "description", "avatar", "url"],
+                "required": [
+                  "tribeId",
+                  "name",
+                  "cohort",
+                  "description",
+                  "avatar",
+                  "url"
+                ],
                 "x-examples": {
                   "example-1": {
                     "tribeId": 0,
@@ -467,7 +528,7 @@
     },
     "/tribe/{id}": {
       "get": {
-        "summary": "Your GET endpoint",
+        "summary": "Tribe by Id",
         "tags": [],
         "responses": {
           "200": {
@@ -483,7 +544,14 @@
                       "uniqueItems": true,
                       "minItems": 1,
                       "items": {
-                        "required": ["tribeId", "name", "cohort", "description", "avatar", "url"],
+                        "required": [
+                          "tribeId",
+                          "name",
+                          "cohort",
+                          "description",
+                          "avatar",
+                          "url"
+                        ],
                         "properties": {
                           "tribeId": {
                             "type": "number"
@@ -519,10 +587,15 @@
                           "minLength": 1
                         }
                       },
-                      "required": ["tribeId"]
+                      "required": [
+                        "tribeId"
+                      ]
                     }
                   },
-                  "required": ["data", "meta"],
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
                   "x-examples": {
                     "example-1": {
                       "data": [
@@ -562,7 +635,7 @@
     },
     "/squad": {
       "get": {
-        "summary": "Your GET endpoint",
+        "summary": "Squad",
         "tags": [],
         "responses": {},
         "operationId": "get-squad",
@@ -585,7 +658,14 @@
                       "uniqueItems": true,
                       "minItems": 1,
                       "items": {
-                        "required": ["squadId", "tribeId", "name", "description", "avatar", "url"],
+                        "required": [
+                          "squadId",
+                          "tribeId",
+                          "name",
+                          "description",
+                          "avatar",
+                          "url"
+                        ],
                         "properties": {
                           "squadId": {
                             "type": "number"
@@ -617,10 +697,15 @@
                           "type": "number"
                         }
                       },
-                      "required": ["insertId"]
+                      "required": [
+                        "insertId"
+                      ]
                     }
                   },
-                  "required": ["data", "meta"],
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
                   "x-examples": {
                     "example-1": {
                       "data": [
@@ -679,7 +764,13 @@
                     "type": "string"
                   }
                 },
-                "required": ["tribeId", "name", "description", "avatar", "url"]
+                "required": [
+                  "tribeId",
+                  "name",
+                  "description",
+                  "avatar",
+                  "url"
+                ]
               }
             }
           },
@@ -703,7 +794,14 @@
                       "uniqueItems": true,
                       "minItems": 1,
                       "items": {
-                        "required": ["squadId", "tribeId", "name", "description", "avatar", "url"],
+                        "required": [
+                          "squadId",
+                          "tribeId",
+                          "name",
+                          "description",
+                          "avatar",
+                          "url"
+                        ],
                         "properties": {
                           "squadId": {
                             "type": "number"
@@ -738,10 +836,16 @@
                           "type": "number"
                         }
                       },
-                      "required": ["affectedRows", "changedRows"]
+                      "required": [
+                        "affectedRows",
+                        "changedRows"
+                      ]
                     }
                   },
-                  "required": ["data", "meta"],
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
                   "x-examples": {
                     "example-1": {
                       "data": [
@@ -794,7 +898,14 @@
                     "type": "string"
                   }
                 },
-                "required": ["squadId", "tribeId", "name", "description", "avatar", "url"],
+                "required": [
+                  "squadId",
+                  "tribeId",
+                  "name",
+                  "description",
+                  "avatar",
+                  "url"
+                ],
                 "x-examples": {
                   "example-1": {
                     "squadId": 2,
@@ -814,7 +925,7 @@
     },
     "/member": {
       "get": {
-        "summary": "Your GET endpoint",
+        "summary": "Member",
         "tags": [],
         "responses": {},
         "operationId": "get-member",
@@ -901,10 +1012,15 @@
                           "type": "number"
                         }
                       },
-                      "required": ["insertId"]
+                      "required": [
+                        "insertId"
+                      ]
                     }
                   },
-                  "required": ["data", "meta"],
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
                   "x-examples": {
                     "example-1": {
                       "data": [
@@ -1095,10 +1211,16 @@
                           "type": "number"
                         }
                       },
-                      "required": ["affectedRows", "changedRows"]
+                      "required": [
+                        "affectedRows",
+                        "changedRows"
+                      ]
                     }
                   },
-                  "required": ["data", "meta"],
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
                   "x-examples": {
                     "example-1": {
                       "data": [
@@ -1237,7 +1359,13 @@
                       "uniqueItems": true,
                       "minItems": 1,
                       "items": {
-                        "required": ["teamId", "name", "description", "avatar", "url"],
+                        "required": [
+                          "teamId",
+                          "name",
+                          "description",
+                          "avatar",
+                          "url"
+                        ],
                         "properties": {
                           "teamId": {
                             "type": "number"
@@ -1266,10 +1394,15 @@
                           "type": "number"
                         }
                       },
-                      "required": ["insertId"]
+                      "required": [
+                        "insertId"
+                      ]
                     }
                   },
-                  "required": ["data", "meta"],
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
                   "x-examples": {
                     "example-1": {
                       "data": [
@@ -1314,7 +1447,12 @@
                     "type": "string"
                   }
                 },
-                "required": ["name", "description", "avatar", "url"],
+                "required": [
+                  "name",
+                  "description",
+                  "avatar",
+                  "url"
+                ],
                 "x-examples": {
                   "example-1": {
                     "name": "The A-Team",
@@ -1330,7 +1468,7 @@
         }
       },
       "patch": {
-        "summary": "",
+        "summary": "Team",
         "operationId": "patch-team",
         "responses": {
           "200": {
@@ -1346,7 +1484,13 @@
                       "uniqueItems": true,
                       "minItems": 1,
                       "items": {
-                        "required": ["teamId", "name", "description", "avatar", "url"],
+                        "required": [
+                          "teamId",
+                          "name",
+                          "description",
+                          "avatar",
+                          "url"
+                        ],
                         "properties": {
                           "teamId": {
                             "type": "number"
@@ -1378,10 +1522,16 @@
                           "type": "number"
                         }
                       },
-                      "required": ["affectedRows", "changedRows"]
+                      "required": [
+                        "affectedRows",
+                        "changedRows"
+                      ]
                     }
                   },
-                  "required": ["data", "meta"],
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
                   "x-examples": {
                     "example-1": {
                       "data": [
@@ -1430,7 +1580,13 @@
                     "type": "string"
                   }
                 },
-                "required": ["teamId", "name", "description", "avatar", "url"],
+                "required": [
+                  "teamId",
+                  "name",
+                  "description",
+                  "avatar",
+                  "url"
+                ],
                 "x-examples": {
                   "example-1": {
                     "teamId": 3,
@@ -1449,7 +1605,7 @@
     },
     "/list": {
       "get": {
-        "summary": "Your GET endpoint",
+        "summary": "List",
         "tags": [],
         "responses": {
           "200": {
@@ -1571,7 +1727,10 @@
                       "required": []
                     }
                   },
-                  "required": ["data", "meta"],
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
                   "x-examples": {
                     "example-1": {
                       "data": [
