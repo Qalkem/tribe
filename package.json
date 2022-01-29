@@ -20,7 +20,7 @@
   "contributors": [
     "Joost Faber <j.faber@hva.nl>"
   ],
-  "license": "MIT",
+  "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/fdnd-apis/tribe/issues"
   },
