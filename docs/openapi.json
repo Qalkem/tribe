@@ -22,24 +22,16 @@
   ],
   "tags": [
     {
-      "name": "list",
-      "description": "A grande list containing members with all information filled out"
+      "name": "member"
     },
     {
-      "name": "member",
-      "description": "Everything about members"
+      "name": "squad"
     },
     {
-      "name": "squad",
-      "description": "Everything about squads"
+      "name": "team"
     },
     {
-      "name": "team",
-      "description": "Everything about teams"
-    },
-    {
-      "name": "tribe",
-      "description": "Everything about tribes"
+      "name": "tribe"
     }
   ],
   "paths": {
@@ -246,7 +238,10 @@
           }
         },
         "operationId": "get-tribe",
-        "summary": "get tribe"
+        "summary": "get tribe",
+        "tags": [
+          "tribe"
+        ]
       },
       "parameters": [],
       "post": {
@@ -394,7 +389,10 @@
             }
           },
           "description": "The tribe to be added"
-        }
+        },
+        "tags": [
+          "tribe"
+        ]
       },
       "patch": {
         "summary": "patch tribe",
@@ -545,13 +543,18 @@
             }
           },
           "description": "The tribe to be patched, use the correct tribeId"
-        }
+        },
+        "tags": [
+          "tribe"
+        ]
       }
     },
     "/tribe/{id}": {
       "get": {
         "summary": "get tribe by id",
-        "tags": [],
+        "tags": [
+          "tribe"
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -658,8 +661,14 @@
     "/squad": {
       "get": {
         "summary": "get squad",
-        "tags": [],
-        "responses": {},
+        "tags": [
+          "squad"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
         "operationId": "get-squad",
         "description": "Gets a list of all squads using pagination"
       },
@@ -797,7 +806,10 @@
             }
           },
           "description": "The squad to be added"
-        }
+        },
+        "tags": [
+          "squad"
+        ]
       },
       "patch": {
         "summary": "patch squad",
@@ -942,14 +954,23 @@
             }
           },
           "description": "The squad to be patched, use the correct squadId"
-        }
+        },
+        "tags": [
+          "squad"
+        ]
       }
     },
     "/member": {
       "get": {
         "summary": "get member",
-        "tags": [],
-        "responses": {},
+        "tags": [
+          "member"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
         "operationId": "get-member",
         "description": "Gets a list of all members using pagination"
       },
@@ -1146,7 +1167,10 @@
             }
           },
           "description": "The member to be added"
-        }
+        },
+        "tags": [
+          "member"
+        ]
       },
       "patch": {
         "summary": "patch member",
@@ -1353,14 +1377,23 @@
             }
           },
           "description": "The member to be patched, use the correct memberId"
-        }
+        },
+        "tags": [
+          "member"
+        ]
       }
     },
     "/team": {
       "get": {
         "summary": "get team",
-        "tags": [],
-        "responses": {},
+        "tags": [
+          "team"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
         "operationId": "get-team",
         "description": "Gets a list of all teams using pagination"
       },
@@ -1487,7 +1520,10 @@
             }
           },
           "description": "The team to be added"
-        }
+        },
+        "tags": [
+          "team"
+        ]
       },
       "patch": {
         "summary": "patch team",
@@ -1622,13 +1658,18 @@
             }
           },
           "description": "The team to be patched, use the correct teamId"
-        }
+        },
+        "tags": [
+          "team"
+        ]
       }
     },
     "/list": {
       "get": {
         "summary": "get list",
-        "tags": [],
+        "tags": [
+          "member"
+        ],
         "responses": {
           "200": {
             "description": "OK",
