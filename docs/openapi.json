@@ -16,7 +16,7 @@
   },
   "servers": [
     {
-      "url": "https://tribe.api.fdnd.nl/v1/",
+      "url": "https://tribe.api.fdnd.nl/v1",
       "description": "Production server"
     }
   ],
@@ -223,12 +223,12 @@
             "description": "An object containing data[] which holds a list of all tribes and meta{} which holds meta information on pagination"
           }
         },
-        "operationId": "",
-        "summary": "Tribe"
+        "operationId": "get-tribe",
+        "summary": "get tribe"
       },
       "parameters": [],
       "post": {
-        "summary": "",
+        "summary": "post tribe",
         "operationId": "post-tribe",
         "responses": {
           "200": {
@@ -375,7 +375,7 @@
         }
       },
       "patch": {
-        "summary": "",
+        "summary": "patch tribe",
         "operationId": "patch-tribe",
         "responses": {
           "200": {
@@ -528,7 +528,7 @@
     },
     "/tribe/{id}": {
       "get": {
-        "summary": "Tribe by Id",
+        "summary": "get tribe by id",
         "tags": [],
         "responses": {
           "200": {
@@ -618,7 +618,7 @@
             }
           }
         },
-        "operationId": "get-tribe-:id",
+        "operationId": "get-tribe-by-id",
         "description": "Gets a specific tribe identified by {id}"
       },
       "parameters": [
@@ -635,14 +635,14 @@
     },
     "/squad": {
       "get": {
-        "summary": "Squad",
+        "summary": "get squad",
         "tags": [],
         "responses": {},
         "operationId": "get-squad",
         "description": "Gets a list of all squads using pagination"
       },
       "post": {
-        "summary": "",
+        "summary": "post squad",
         "operationId": "post-squad",
         "responses": {
           "200": {
@@ -778,7 +778,7 @@
         }
       },
       "patch": {
-        "summary": "",
+        "summary": "patch squad",
         "operationId": "patch-squad",
         "responses": {
           "200": {
@@ -925,14 +925,14 @@
     },
     "/member": {
       "get": {
-        "summary": "Member",
+        "summary": "get member",
         "tags": [],
         "responses": {},
         "operationId": "get-member",
         "description": "Gets a list of all members using pagination"
       },
       "post": {
-        "summary": "",
+        "summary": "post member",
         "operationId": "post-member",
         "responses": {
           "200": {
@@ -1127,7 +1127,7 @@
         }
       },
       "patch": {
-        "summary": "",
+        "summary": "patch member",
         "operationId": "patch-member",
         "responses": {
           "200": {
@@ -1336,14 +1336,14 @@
     },
     "/team": {
       "get": {
-        "summary": "Your GET endpoint",
+        "summary": "get team",
         "tags": [],
         "responses": {},
         "operationId": "get-team",
         "description": "Gets a list of all teams using pagination"
       },
       "post": {
-        "summary": "",
+        "summary": "post team",
         "operationId": "post-team",
         "responses": {
           "200": {
@@ -1468,7 +1468,7 @@
         }
       },
       "patch": {
-        "summary": "Team",
+        "summary": "patch team",
         "operationId": "patch-team",
         "responses": {
           "200": {
@@ -1605,7 +1605,7 @@
     },
     "/list": {
       "get": {
-        "summary": "List",
+        "summary": "get list",
         "tags": [],
         "responses": {
           "200": {
