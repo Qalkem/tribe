@@ -11,7 +11,7 @@ module.exports = express
       message: 'Welcome to tribe.api.fdnd.nl! Please use the resources below to expore this API.',
       github: 'https://github.com/fdnd-apis/tribe',
       spec: 'https://tribe.api.fdnd.nl/v1',
-      docs: 'https://redocly.github.io/redoc/?url=https://tribe.api.fdnd.nl/v1',
+      docs: 'https://redocly.github.io/redoc/?url=https:%2F%2Ftribe.api.fdnd.nl%2Fv1',
     })
   })
 
