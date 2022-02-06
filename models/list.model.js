@@ -37,7 +37,7 @@ module.exports.get = async function () {
   )
 
   rows.map((member) => {
-    member.teams = [member.teams]
+    member.teams = '['.member.teams.']'
     return member
   })
 
