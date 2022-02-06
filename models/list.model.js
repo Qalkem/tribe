@@ -27,7 +27,7 @@ module.exports.get = async function () {
     tribe.avatar as tribeAvatar,
     tribe.url as tribeUrl,
     
-    GROUP_CONCAT('{ teamId: ',team.teamId,', name: "', team.name,'", description: "', team.description,'", avatar: "',team.avatar,'", url: "', team.url,'"}') as teams
+    GROUP_CONCAT("{ teamId: ",team.teamId,", name: '", team.name,"', description: '", team.description,"', avatar: '",team.avatar,"', url: '", team.url,"'}") as teams
   FROM member 
     LEFT JOIN squad ON member.squadId = squad.squadId
     LEFT JOIN tribe ON squad.tribeId = tribe.tribeId
@@ -35,7 +35,7 @@ module.exports.get = async function () {
     LEFT JOIN team ON team_member.teamId = team.teamId
   GROUP BY team_member.memberId`
   )
-  // rows[21] = JSON.parse(rows[21])
+
   return {
     data: helper.emptyOrRows(rows),
     meta: {},
