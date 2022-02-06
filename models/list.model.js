@@ -36,6 +36,11 @@ module.exports.get = async function () {
   GROUP BY team_member.memberId`
   )
 
+  rows.map((member) => {
+    member.teams = [member.teams]
+    return member
+  })
+
   return {
     data: helper.emptyOrRows(rows),
     meta: {},
