@@ -35,7 +35,7 @@ module.exports.get = async function () {
     LEFT JOIN team ON team_member.teamId = team.teamId
   GROUP BY team_member.memberId`
   )
-
+  rows.teams = JSON.parse(rows.teams)
   return {
     data: helper.emptyOrRows(rows),
     meta: {},
