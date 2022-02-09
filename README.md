@@ -2,13 +2,15 @@
 
 # Analyse 
 
+Mijn verwachting is om  door middel van HTML,CSS en JavaScript   een API  te
+bewerk van fdnd. 
+
 # Ontwerp 
 
 <table>
   <tr>
-    <td>First Screen Page</td>
-     <td>Holiday Mention</td>
-     <td>Present day in purple and selected day in pink</td>
+    <td>Divergeren</td>
+  
   </tr>
   <tr>
     <td valign="top"><img src="screenshots/Screenshot_1582745092.png"></td>
@@ -16,6 +18,13 @@
     <td valign="top"><img src="screenshots/Screenshot_1582745139.png"></td>
   </tr>
  </table>
+ 
+ <table>
+  <tr> <td> Convergeren</td> 
+  </tr> 
+  
+  <tr>     <td valign="top"><img src="screenshots/Screenshot_1582745139.png"></td> </tr>
+  </table>
 
 [![JavaScript Style Guide][javascript-style-guide-badge]][standard]
 
